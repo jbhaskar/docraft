@@ -1,0 +1,162 @@
+<div>
+<md-content class="md-padding">
+  <md-nav-bar md-selected-nav-item="currentNavItem" ng-init="currentNavItem='page1'" nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-click="goto('page1')" name="page1" value="page1">
+      History
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page2')" name="page2" value="page2">
+      General Physician Examination
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page3')" name="page3" value="page3">
+      Vitals
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page4')" name="page4" value="page4">
+      Advice
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page5')" name="page5" value="page5">
+      Medications
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page6')" name="page6" value="page6">
+      Reports
+    </md-nav-item>
+
+    <md-button class="pull-right md-primary md-raised" style="position: absolute;right: 20px; bottom: 2px;"  >Save</md-button>
+    <!-- these require actual routing with ui-router or ng-route, so they
+    won't work in the demo
+    <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+    <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+    You can also add options for the <code>ui-sref-opts</code> attribute.
+    <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+      Page Six
+    </md-nav-item>
+    -->
+  </md-nav-bar>
+  <div class="ext-content">
+    <!-- External content for `<span>{{currentNavItem}}</span>`. -->
+
+
+
+    <md-content ng-show="currentNavItem == 'page1'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <form name="patientHistoryForm">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Present condition</label>
+              <textarea ng-model="patient.presentCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Past History</label>
+              <textarea ng-model="patient.pastHistory" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Social History</label>
+              <textarea ng-model="patient.socialHistory" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Allergy History</label>
+              <textarea ng-model="patient.allergyHistory" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+
+          </div>
+        </form>
+      </div>
+    </md-content>
+
+
+    <md-content ng-show="currentNavItem == 'page2'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <form name="patientHistoryForm">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>General condition</label>
+              <textarea ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+          </div>
+        </form>
+      </div>
+    </md-content>
+    
+
+    <md-content ng-show="currentNavItem == 'page3'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <form name="patientHistoryForm">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Pulse rate</label>
+              <input type="number" ng-model="patient.pulseRate"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Blood Pressure</label>
+              <input type="number" ng-model="patient.bp"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Respiratory rate</label>
+              <input type="number" ng-model="patient.respRate"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Temperature</label>
+              <input type="number" ng-model="patient.temperature"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>SpO2</label>
+              <input type="number" ng-model="patient.spo2"></input>
+            </md-input-container>
+          </div>
+        </form>
+      </div>
+    </md-content>
+
+    <md-content ng-show="currentNavItem == 'page4'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <form name="patientHistoryForm">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Pulse rate</label>
+              <input type="number" ng-model="patient.pulseRate"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Blood Pressure</label>
+              <input type="number" ng-model="patient.bp"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Respiratory rate</label>
+              <input type="number" ng-model="patient.respRate"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Temperature</label>
+              <input type="number" ng-model="patient.temperature"></input>
+            </md-input-container>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>SpO2</label>
+              <input type="number" ng-model="patient.spo2"></input>
+            </md-input-container>
+          </div>
+        </form>
+      </div>
+    </md-content>
+  </div>
+
+</md-content>
+</div>

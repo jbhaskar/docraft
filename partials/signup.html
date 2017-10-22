@@ -1,0 +1,130 @@
+<div class="signup-container col-md-12">
+    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
+      <div>
+        <form name="userForm">
+          <div layout-gt-sm="row" layout-align="space-between center">
+            <md-input-container flex-gt-sm="">
+              <label>Title</label>
+              <md-select ng-model="user.title">
+                <md-option value="mr">Mr.</md-option>
+                <md-option value="mrs">Mrs.</md-option>
+                <md-option value="miss">Miss.</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Gender</label>
+              <md-select ng-model="user.gender">
+                <md-option value="male">Male</md-option>
+                <md-option value="female">Female</md-option>
+                <md-option value="other">Others</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Blood Group</label>
+              <md-select ng-model="user.bloodGroup">
+                <md-option value="op">O+</md-option>
+                <md-option value="on">O-</md-option>
+                <md-option value="ap">A+</md-option>
+                <md-option value="an">A-</md-option>
+                <md-option value="bp">B+</md-option>
+                <md-option value="bn">B-</md-option>
+                <md-option value="abp">AB+</md-option>
+                <md-option value="abn">AB-</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+
+          <div layout-gt-sm="row" layout-align="space-between center">
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Date of Birth</label>
+              <md-datepicker ng-model="user.dob"></md-datepicker>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Age</label>
+              <input type="number" ng-model="user.age"></input>
+            </md-input-container>
+
+          </div>
+          <div layout-gt-sm="row">
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>First name</label>
+              <input ng-model="user.firstName">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Last name</label>
+              <input ng-model="user.lastName">
+            </md-input-container>
+          </div>
+
+          
+
+          <md-input-container class="md-block">
+            <label>Address</label>
+            <input ng-model="user.address">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Address Line 2</label>
+            <input ng-model="user.address2">
+          </md-input-container>
+
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>City</label>
+              <input ng-model="user.city">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>State</label>
+              <md-select ng-model="user.state">
+                <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                  {{state.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Postal Code</label>
+              <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
+
+              <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
+                <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                  code.
+                </div>
+                <div ng-message="md-maxlength" class="my-message">
+                  Don't use the long version silly...we don't need to be that specific...
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+
+
+          <md-input-container class="md-block">
+            <label>Father's Name</label>
+            <input ng-model="user.fathersName">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Nationality</label>
+            <input ng-model="user.country">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Emergeny Contact Details</label>
+            <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+          </md-input-container>
+
+          <md-button class="md-raised md-primary" flex-gt-sm="row">Sign Up</md-button>
+        </form>
+      </div>
+    </md-content>
+  <!-- <button ng-click="showHideLogin()">Login</button> -->
+
+</div>

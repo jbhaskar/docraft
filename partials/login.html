@@ -1,0 +1,33 @@
+<div class="login">
+<div class="login-container">
+  <div class="login-logo">
+    <img src="../images/logo.png" alt="logo">
+  </div>
+  <div class="login-form-container">
+    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+      <form>
+        <div layout-gt-sm="row" layout-align="space-between center">
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Email</label>
+            <input ng-model="user.email" type="email">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row" layout-align="space-between center">
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Password</label>
+            <input ng-model="user.password" type="password">
+          </md-input-container>
+        </div>
+        <!-- <input type="email" name="username" ng-model="username" placeholder="Userame" >
+        <input type="password" name="password" placeholder="Password" > -->
+        <div layout-gt-sm="row" layout-align="space-between center">
+          <md-button class="md-primary md-raised" flex-gt-sm="">Sign In</md-button>
+        </div>
+        <a href="#/signup">Sign up</a>
+      </form>
+    </md-content>
+  </div>
+  <!-- <button ng-click="showHideLogin()">Login</button> -->
+
+</div>
+</div>
