@@ -8,7 +8,7 @@
           <span ng-click="toggleSearch = !toggleSearch">Admin Page</span>
         </div>
         <span flex="flex" ng-hide="toggleSearch"></span>
-        <md-input-container flex="flex" style="padding-left:88px" ng-show="toggleSearch">
+        <md-input-container flex="flex" style="padding-left:88px" class="dark-search" ng-show="toggleSearch">
           <input id="searchinput" type="text" ng-model="search" show-focus="toggleSearch"/>
         </md-input-container>
         <div class="md-toolbar-item md-tools" layout="row">

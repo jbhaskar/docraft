@@ -1,5 +1,16 @@
 var app = angular.module('docraft', ['ngRoute', 'ngAnimate', 'ngAria', 'ngMaterial' ])
 
+app.run(function($rootScope, $location) {
+        $rootScope.showAccountMenu = function($mdMenu, ev) {
+            $mdMenu.open(ev);
+        };
+
+        $rootScope.loginPath = function() {
+            return $location.url() === "/login";
+        };
+
+    });
+
 app.directive('mdTable', function () {
   return {
     restrict: 'E',
@@ -38,7 +49,7 @@ app.directive('mdTable', function () {
 });
 
 //UNCOMMENT BELOW TO BE ABLE TO RESIZE COLUMNS OF THE TABLE
-/*
+
 app.directive('mdColresize', function ($timeout) {
   return {
     restrict: 'A',
@@ -53,7 +64,28 @@ app.directive('mdColresize', function ($timeout) {
     }
   }
 });
-*/
+
+app.directive('chooseFile', function() {
+    return {
+      link: function (scope, elem, attrs) {
+        var button = elem.find('button');
+        var input = angular.element(elem[0].querySelector('input#fileInput'));
+        button.bind('click', function() {
+          input[0].click();
+        });
+        input.bind('change', function(e) {
+          scope.$apply(function() {
+            var files = e.target.files;
+            if (files[0]) {
+              scope.fileName = files[0].name;
+            } else {
+              scope.fileName = null;
+            }
+          });
+        });
+      }
+    };
+  });
 
 app.directive('showFocus', function($timeout) {
   return function(scope, element, attrs) {
@@ -80,28 +112,33 @@ app.filter('startFrom',function (){
     .config(function ($routeProvider,$mdThemingProvider) {
         $routeProvider.
             when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'}).
-            when('/assessment', {templateUrl: 'partials/assessment.html', controller: 'AssessmentCtrl'}).
+            when('/assessment/:id', {templateUrl: 'partials/assessment.html', controller: 'AssessmentCtrl'}).
             when('/list', {templateUrl: 'partials/list.html', controller: 'ListCtrl'}).
             when('/admin', {templateUrl: 'partials/admin.html', controller: 'AdminCtrl'}).
             when('/signup', {templateUrl: 'partials/signup.html', controller: 'SignupCtrl'}).
             when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'}).
-            otherwise({redirectTo: '/home'});
+            otherwise({redirectTo: '/login'});
 
         $mdThemingProvider.theme('docs-dark', 'default')
-          .primaryPalette('blue', { 'default': '900'});
+          .primaryPalette('indigo', { 'default': '500'})
+          .accentPalette('indigo', { 'default': '900'});;
+
+        $mdThemingProvider.alwaysWatchTheme(true);
     })
-    .controller('LoginCtrl', function ($scope, StateService) {
+    .controller('LoginCtrl', function ($scope, $location, StateService) {
         $scope.title = 'About Page';
         $scope.body = 'This is the about page body';
         $scope.message = StateService.getMessage();
+        $scope.login = true
 
         $scope.updateMessage = function (m) {
             StateService.setMessage(m);
         };
     })
-    .controller('AssessmentCtrl', function ($scope, StateService, ExperimentsService) {
+    .controller('AssessmentCtrl', function ($scope, $routeParams, StateService, ExperimentsService) {
         $scope.title = 'Experiments Page';
         $scope.body = 'This is the about experiments body';
+        $scope.patient_id = $routeParams.id
 
         $scope.goto = function(page) {
           console.log("Goto " + page);
@@ -133,11 +170,14 @@ app.filter('startFrom',function (){
               name: 'Name', 
               field: 'name'
             },{
-              name:'Description', 
-              field: 'description'
+              name:'Patient ID', 
+              field: 'patient_id'
             },{
-              name: 'Last Modified', 
-              field: 'last_modified'
+              name: 'Mobile Number', 
+              field: 'mobile'
+            },{
+              name: 'Status', 
+              field: 'status'
             }
         ];
 
@@ -145,33 +185,38 @@ app.filter('startFrom',function (){
         {
           thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg', 
           name: 'Bruno Mars', 
-          description: 'Human',
-          last_modified: 'Jun 5, 2014'
+          patient_id: '1131',
+          mobile: '834-234-5568',
+          status: 'online'
         },{
           thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg', 
           name: 'AT-AT', 
-          description: 'Robot',
-          last_modified: 'Jun 5, 2014'
+          patient_id: '2131',
+          mobile: '737-868-6754',
+          status: 'online'
         },{
           thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
           name: 'Mark Ronson', 
-          description: 'Human',
-          last_modified: 'Jun 5, 2014'
+          patient_id: '4231',
+          mobile: '956-342-7768',
+          status: 'offline'
         },{
           thumb:'https://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg', 
           name: 'Daft Punk', 
-          description: 'Human-Robot',
-          last_modified: 'Jun 5, 2014'
+          patient_id: '931',
+          mobile: '857-687-4875',
+          status: 'offline'
         },{
           thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg', 
           name: 'Lady Gaga', 
-          description: 'Undefined',
-          last_modified: 'Jun 5, 2014'
+          patient_id: '451',
+          mobile: '657-384-9586',
+          status: 'online'
         }
         ];
 
-        $scope.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
-        $scope.sortable = ['name', 'description', 'last_modified'];
+        $scope.custom = {name: 'bold', patient_id:'grey',mobile: 'grey',status: 'grey'};
+        $scope.sortable = ['name', 'patient_id', 'mobile', 'status'];
         $scope.thumbs = 'thumb';
         $scope.count = 3;
     })

@@ -1,14 +1,14 @@
 <div class="main-fab">
-  <md-button class="md-fab md-accent add-btn">+</md-button>
-  <md-toolbar class="md-tall" layout="column">
+  <md-button class="md-fab md-accent add-btn" ng-href="#/signup">+</md-button>
+  <md-toolbar class="md-tall" layout="column" md-theme="docs-dark">
     <span flex="flex"></span>
     <div class="md-toolbar-tools">
       <div class="fill-height" layout="row" flex="flex">
         <div class="md-toolbar-item md-breadcrumb" ng-hide="toggleSearch">
-          <span ng-click="toggleSearch = !toggleSearch">List Page</span>
+          <span ng-click="toggleSearch = !toggleSearch">Patients List</span>
         </div>
         <span flex="flex" ng-hide="toggleSearch"></span>
-        <md-input-container flex="flex" style="padding-left:88px" ng-show="toggleSearch">
+        <md-input-container flex="flex" style="padding-left:88px" class="dark-search" ng-show="toggleSearch" md-theme="docs-dark">
           <input id="searchinput" type="text" ng-model="search" show-focus="toggleSearch"/>
         </md-input-container>
         <div class="md-toolbar-item md-tools" layout="row">
@@ -44,7 +44,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="md-table-content-row" ng-repeat="c in content | filter:filters | startFrom:tablePage*count | limitTo: count">
+      <tr class="md-table-content-row" ng-repeat="c in content | filter:filters | startFrom:tablePage*count | limitTo: count" >
+        <a href="#/assessment">
         <td>
           <div class="md-table-thumbs" ng-repeat="h in headers" ng-if="h.field == thumbs">
             <div style="background-image:url({{c.thumb}})"></div>
@@ -54,8 +55,9 @@
           {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
         </td>
         <td class="md-table-td-more">
-          <md-button aria-label="Info"><i class="ion-android-more-vertical"></i></md-button>
+          <md-button aria-label="Info" ng-href="#/assessment/{{c.patient_id}}"><!-- <i class="ion-android-more-vertical"></i> -->Details</md-button>
         </td>
+        </a>
       </tr>
     </tbody>
   </table>

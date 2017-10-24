@@ -25,9 +25,43 @@
 <!-- top -->
 <header id="header">
     <div class="col-md-12 header-content">
-      <h1 id="logo"><a href="#/home"></a></h1>
-      <h1>Columbia Asia</h1>
-      <p><script> document.write(new Date().toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false })); </script></p>
+      <a href="#/"><md-icon ng-bind="'home'"></md-icon><h1 id="logo"> Telemed Manipal</h1></a>
+      <div>
+        <p>
+          <script> document.write(new Date().toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false })); </script>
+          <!-- <md-button ng-hide="scope.login" ng-href="#/login" class="md-raised md-primary">Logout</md-button> -->
+          <!-- <md-button ng-hide="loginPath()" class="md-fab md-primary" aria-label="Navigation" ng-click="showAccountMenu($mdMenu, $event)">
+            <md-icon ng-bind="'account_circle'"></md-icon>
+          </md-button> -->
+        <md-menu md-offset="-150 60" md-theme="docs-dark" class="md-primary" ng-cloak>
+          <md-button ng-hide="loginPath()" class="md-fab md-primary" aria-label="Profile" ng-click="showAccountMenu($mdMenu, $event)">
+            <md-icon ng-bind="'people'"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item>
+              <md-button ng-href="#/admin">
+                <md-icon md-svg-icon="call:dialpad" md-menu-align-target=""></md-icon>
+                Admin
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button>
+                <md-icon md-svg-icon="call:dialpad" md-menu-align-target=""></md-icon>
+                Profile
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
+              <md-button ng-href="#/login" >
+                <md-icon md-svg-icon="social:notifications-on"></md-icon>
+                 Logout
+              </md-button>
+            </md-menu-item>
+          </md-menu>
+
+        </p>
+
+      </div>
     </div>
 
     <div class="clear"></div>
@@ -36,7 +70,7 @@
 <!-- <div class="shadow"></div> -->
 
 <div id="container">
-    <div ng-view></div>
+    <div class='view-container' ng-view></div>
 </div>
 
 

@@ -1,11 +1,30 @@
-<div>
+<div class="assessment">
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs="" flex-gt-xs="" layout="column">
+      <md-card md-theme="docs-dark" md-theme-watch="">
+        <md-card-title>
+          <md-card-title-media>
+            <img ng-src="https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg" class="md-card-image card-media" alt="Washed Out">
+            <!-- <div class="md-media-lg card-media"></div> -->
+          </md-card-title-media>
+          <md-card-title-text>
+            <span class="md-headline">John Doe</span>
+            <span class="md-subhead">12321</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-card>
+    </div>
+  </md-content>
+
 <md-content class="md-padding">
-  <md-nav-bar md-selected-nav-item="currentNavItem" ng-init="currentNavItem='page1'" nav-bar-aria-label="navigation links">
+  <md-card md-theme="docs-dark" md-theme-watch="">
+  <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='page1'" nav-bar-aria-label="navigation links">
     <md-nav-item md-nav-click="goto('page1')" name="page1" value="page1">
       History
     </md-nav-item>
     <md-nav-item md-nav-click="goto('page2')" name="page2" value="page2">
-      General Physician Examination
+      Examination
     </md-nav-item>
     <md-nav-item md-nav-click="goto('page3')" name="page3" value="page3">
       Vitals
@@ -14,13 +33,16 @@
       Advice
     </md-nav-item>
     <md-nav-item md-nav-click="goto('page5')" name="page5" value="page5">
-      Medications
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page6')" name="page6" value="page6">
       Reports
     </md-nav-item>
+    <md-nav-item md-nav-click="goto('page6')" name="page6" value="page6">
+      Medications
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page7')" name="page7" value="page7">
+      Online Consultation
+    </md-nav-item>
 
-    <md-button class="pull-right md-primary md-raised" style="position: absolute;right: 20px; bottom: 2px;"  >Save</md-button>
+    <md-button class="pull-right md-primary md-raised" style="position: absolute;right: 20px; bottom: 5px;"  >Save</md-button>
     <!-- these require actual routing with ui-router or ng-route, so they
     won't work in the demo
     <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
@@ -41,7 +63,7 @@
         <form name="patientHistoryForm">
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Present condition</label>
+              <label>Present Complaints</label>
               <textarea ng-model="patient.presentCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
             </md-input-container>
           </div>
@@ -74,8 +96,14 @@
         <form name="patientHistoryForm">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>General condition</label>
+              <label>General Condition</label>
               <textarea ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Systematic Examination</label>
+              <textarea ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
             </md-input-container>
           </div>
         </form>
@@ -88,31 +116,31 @@
         <form name="patientHistoryForm">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Pulse rate</label>
+              <label>Pulse rate (per minute)</label>
               <input type="number" ng-model="patient.pulseRate"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Blood Pressure</label>
-              <input type="number" ng-model="patient.bp"></input>
+              <label>Blood Pressure (SBP/DBP in mmHg)</label>
+              <input type="text" ng-model="patient.bp"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Respiratory rate</label>
+              <label>Respiratory rate (per minute)</label>
               <input type="number" ng-model="patient.respRate"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Temperature</label>
+              <label>Temperature (&#8457;)</label>
               <input type="number" ng-model="patient.temperature"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>SpO2</label>
+              <label>SpO2 (%)</label>
               <input type="number" ng-model="patient.spo2"></input>
             </md-input-container>
           </div>
@@ -122,41 +150,110 @@
 
     <md-content ng-show="currentNavItem == 'page4'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <form name="patientHistoryForm">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+        <form name="patientAdviceForm">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Pulse rate</label>
-              <input type="number" ng-model="patient.pulseRate"></input>
+              <label>Provisional Diagnosis</label>
+              <textarea ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
             </md-input-container>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Blood Pressure</label>
-              <input type="number" ng-model="patient.bp"></input>
+              <label>Investigations</label>
+              <textarea ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
             </md-input-container>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
-              <label>Respiratory rate</label>
-              <input type="number" ng-model="patient.respRate"></input>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Temperature</label>
-              <input type="number" ng-model="patient.temperature"></input>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>SpO2</label>
-              <input type="number" ng-model="patient.spo2"></input>
+              <label>General Advice</label>
+              <textarea ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
             </md-input-container>
           </div>
         </form>
       </div>
     </md-content>
-  </div>
 
+
+    <md-content ng-show="currentNavItem == 'page5'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <form name="patientReportsForm">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+              <div layout="row" flex="50">Biochemistry</div>
+              <choose-file layout="row" flex="50" style="align-items: center;">
+                <input id="fileInput" type="file" class="ng-hide">
+                <md-input-container flex class="md-block">
+                  <input type="text" ng-model="biochemistry" disabled>
+                  <div class="hint">Select your file</div>
+                </md-input-container>
+                <div>
+                  <md-button id="uploadButton" class="md-fab md-mini">
+                    <md-icon class="material-icons">attach_file</md-icon>
+                  </md-button>
+                </div>
+              </choose-file>  
+            </md-input-container>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+              <div layout="row" flex="50">Pathology Reports</div>
+              <choose-file layout="row" flex="50" style="align-items: center;">
+                <input id="fileInput" type="file" class="ng-hide">
+                <md-input-container flex class="md-block">
+                  <input type="text" ng-model="pathology" disabled>
+                  <div class="hint">Select your file</div>
+                </md-input-container>
+                <div>
+                  <md-button id="uploadButton" class="md-fab md-mini">
+                    <md-icon class="material-icons">attach_file</md-icon>
+                  </md-button>
+                </div>
+              </choose-file>  
+            </md-input-container>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+              <div layout="row" flex="50">Imaging (X-Ray/Echo/USG/CT/MRI etc.)</div>
+              <choose-file layout="row" flex="50" style="align-items: center;">
+                <input id="fileInput" type="file" class="ng-hide">
+                <md-input-container flex class="md-block">
+                  <input type="text" ng-model="imaging" disabled>
+                  <div class="hint">Select your file</div>
+                </md-input-container>
+                <div>
+                  <md-button id="uploadButton" class="md-fab md-mini">
+                    <md-icon class="material-icons">attach_file</md-icon>
+                  </md-button>
+                </div>
+              </choose-file>  
+            </md-input-container>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+              <div layout="row" flex="50">Others</div>
+              <choose-file layout="row" flex="50" style="align-items: center;">
+                <input id="fileInput" type="file" class="ng-hide">
+                <md-input-container flex class="md-block">
+                  <input type="text" ng-model="others" disabled>
+                  <div class="hint">Select your file</div>
+                </md-input-container>
+                <div>
+                  <md-button id="uploadButton" class="md-fab md-mini">
+                    <md-icon class="material-icons">attach_file</md-icon>
+                  </md-button>
+                </div>
+              </choose-file>  
+            </md-input-container>
+          </div>
+        </form>
+      </div>
+    </md-content>
+
+    
+  </div>
+</md-card>
 </md-content>
 </div>
+
+
+

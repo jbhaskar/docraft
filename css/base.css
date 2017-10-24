@@ -14,18 +14,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #0081c1;
+    background: #303F9F;
+    padding: 10px 40px;
 
 }
 
 .header-content p {
     margin: 0;
     font-size: 14px;
-    padding: 10px;
+    /*padding: 10px;*/
     font-weight: 300;
     color: #fff;
     font-family: Verdana;
 }
+
+
 
 .header-content h1 {
     margin: 0;
@@ -39,17 +42,19 @@ body {
 #header h1#logo {
     float: left;
     margin: 0;
+    line-height: 0.8;
+    padding: 8px 16px;
 }
 
 
-#header h1#logo a {
-    background: url(../images/logo1.png) no-repeat center;
-    background-size: contain;
-    width: 100px;
-    height: 26px;
-    margin: 2px 24px;
-    display: block;
-    text-indent: -9999px;
+#header a md-icon {
+    color: #fff;
+    font-size: 36px;
+    line-height: 1;
+    float: left;
+    padding: 0;
+    vertical-align: middle;
+    /*padding: 5px;*/
 }
 
 
@@ -179,7 +184,7 @@ i {
 
 .main-fab .add-btn {
     position: absolute;
-    top: 140px;
+    top: 160px;
     left: 20px;
 }
 
@@ -295,4 +300,36 @@ md-input-container.md-docs-dark-theme md-select {
     border-color: grey;
     color:grey ;
     font-weight: 700;
+}
+
+.assessment .card-media {
+  background-color: #ccc;
+  height: 160px;
+  width: 160px;
+}
+
+
+.assessment md-card-title-text {
+  padding-left: 16px; }
+
+.assessment .md-nav-bar {
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+.assessment md-nav-bar .md-button._md-nav-button {
+    line-height: 32px;
+}
+
+.header-content p .md-button {
+    height: 40px;
+    width: 40px;
+}
+
+.dark-search {
+    display: flex;
+}
+.dark-search input {
+    color: #fff !important;
+    border-color: #fff !important;
 }
