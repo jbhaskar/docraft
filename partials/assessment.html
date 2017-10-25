@@ -19,7 +19,7 @@
 
 <md-content class="md-padding">
   <md-card md-theme="docs-dark" md-theme-watch="">
-  <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='page1'" nav-bar-aria-label="navigation links">
+  <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='page6'" nav-bar-aria-label="navigation links">
     <md-nav-item md-nav-click="goto('page1')" name="page1" value="page1">
       History
     </md-nav-item>
@@ -280,19 +280,9 @@
     </thead>
     <tbody>
       <tr class="md-table-content-row" ng-repeat="c in content | filter:filters | startFrom:tablePage*count | limitTo: count" >
-        <a href="#/assessment">
-        <td>
-          <div class="md-table-thumbs" ng-repeat="h in headers" ng-if="h.field == thumbs">
-            <div style="background-image:url({{c.thumb}})"></div>
-          </div>
-        </td>
         <td class="md-table-content" ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs">
           {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
         </td>
-        <td class="md-table-td-more">
-          <md-button aria-label="Info" ng-href="#/assessment/{{c.patient_id}}"><!-- <i class="ion-android-more-vertical"></i> -->Details</md-button>
-        </td>
-        </a>
       </tr>
     </tbody>
   </table>
@@ -321,7 +311,7 @@
       </md-button>
     </span>
   </div>
-  
+
 </div>
   </div>
 </md-card>
