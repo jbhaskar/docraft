@@ -149,6 +149,71 @@ app.filter('startFrom',function (){
         $scope.updateMessage = function (m) {
             StateService.setMessage(m);
         };
+
+        $scope.toggleSearch = false;
+        $scope.headers = [
+            {
+              name:'',
+              field:'thumb'
+            },{
+              name: 'Medication Name(Brand)', 
+              field: 'medication'
+            },{
+              name:'Generic Name',
+              field: 'generic_nameq'
+            },{
+              name: 'Form', 
+              field: 'form'
+            },{
+              name: 'Dose', 
+              field: 'dose'
+            },{
+              name: 'Route', 
+              field: 'route'
+            },{
+              name: 'Schedule', 
+              field: 'schedule'
+            }
+        ];
+
+        $scope.content = [
+        {
+          thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg', 
+          name: 'Bruno Mars', 
+          patient_id: '1131',
+          mobile: '834-234-5568',
+          status: 'online'
+        },{
+          thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg', 
+          name: 'AT-AT', 
+          patient_id: '2131',
+          mobile: '737-868-6754',
+          status: 'online'
+        },{
+          thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
+          name: 'Mark Ronson', 
+          patient_id: '4231',
+          mobile: '956-342-7768',
+          status: 'offline'
+        },{
+          thumb:'https://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg', 
+          name: 'Daft Punk', 
+          patient_id: '931',
+          mobile: '857-687-4875',
+          status: 'offline'
+        },{
+          thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg', 
+          name: 'Lady Gaga', 
+          patient_id: '451',
+          mobile: '657-384-9586',
+          status: 'online'
+        }
+        ];
+
+        $scope.custom = {name: 'bold', patient_id:'grey',mobile: 'grey',status: 'grey'};
+        $scope.sortable = ['name', 'patient_id', 'mobile', 'status'];
+        $scope.thumbs = 'thumb';
+        $scope.count = 3;
     })
     .controller('ListCtrl', function ($scope, StateService) {
         $scope.title = 'Home Page';

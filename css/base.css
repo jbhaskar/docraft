@@ -10,6 +10,16 @@ body {
     left: 0;
     width: 100%;
 }
+
+.copyright {
+    background: #303F9F;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccc;    
+}
+
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -64,7 +74,8 @@ body {
 #container {
     display: flex;
     justify-content: center;
-    flex-grow: 1;
+    /*flex-grow: 1;*/
+    height: 100%;
 }
 
 .shadow {
@@ -104,7 +115,7 @@ body {
 
 .login-logo img {
     width: 80%;
-    margin: 20px auto
+    margin: 20px 60px;
 }
 
 .login-logo {
