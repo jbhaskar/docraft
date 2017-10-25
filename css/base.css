@@ -315,8 +315,8 @@ md-input-container.md-docs-dark-theme md-select {
 
 .assessment .card-media {
   background-color: #ccc;
-  height: 160px;
-  width: 160px;
+  max-height: 160px;
+  max-width: 160px;
 }
 
 

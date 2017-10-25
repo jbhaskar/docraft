@@ -21,7 +21,8 @@ app.directive('mdTable', function () {
       filters: '=',
       customClass: '=customClass',
       thumbs:'=', 
-      count: '=' 
+      count: '=',
+      type: '='
     },
     controller: function ($scope,$filter,$window) {
       var orderBy = $filter('orderBy');
@@ -150,7 +151,22 @@ app.filter('startFrom',function (){
             StateService.setMessage(m);
         };
 
+
         $scope.toggleSearch = false;
+        $scope.docapptype = '2';
+        $scope.medapptype = '1';
+        $scope.docheaders = [
+            {
+              name: 'Name', 
+              field: 'name'
+            },{
+              name:'Specialization',
+              field: 'spec'
+            },{
+              name: 'Location', 
+              field: 'location'
+            }
+        ];
         $scope.headers = [
             {
               name: 'Medication Name(Brand)', 
@@ -179,38 +195,55 @@ app.filter('startFrom',function (){
           generic_name: 'Paracetamol 500mg', 
           form: 'Tablet',
           medication: 'Ranbaxy Paracep',
-          dose: '1x3'
+          dose: '1x3',
+          schedule: 'Daily'
         },{
           thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg', 
           generic_name: 'Paracetamol 500mg', 
           form: 'Tablet',
           medication: 'Ranbaxy Paracep',
-          dose: '1x3'
+          dose: '1x3',
+          schedule: 'Daily'
         },{
           thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
           generic_name: 'Paracetamol 500mg', 
           form: 'Tablet',
           medication: 'Ranbaxy Paracep',
-          dose: '1x3'
+          dose: '1x3',
+          schedule: 'Daily'
         },{
           thumb:'https://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg', 
           generic_name: 'Paracetamol 500mg', 
           form: 'Tablet',
           medication: 'Ranbaxy Paracep',
-          dose: '1x3'
+          dose: '1x3',
+          schedule: 'Daily'
         },{
           thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg', 
           generic_name: 'Paracetamol 500mg', 
           form: 'Tablet',
           medication: 'Ranbaxy Paracep',
-          dose: '1x3'
+          dose: '1x3',
+          schedule: 'Daily'
         }
         ];
 
-        $scope.custom = {name: 'bold', patient_id:'grey',mobile: 'grey',status: 'grey'};
-        $scope.sortable = ['name', 'patient_id', 'mobile', 'status'];
+        $scope.doccontent = [
+        {
+          name: 'Dr Dhruv Joshi', 
+          spec: 'Nephrologist',
+          location: 'Bangalore'
+        }
+        ];
+
+        $scope.custom = {medication: 'bold', form:'grey',generic_name: 'grey',dose: 'grey',schedule: 'grey'};
+        $scope.sortable = ['medication','generic_name', 'form', 'dose', 'route', 'schedule'];
         $scope.thumbs = 'thumb';
         $scope.count = 3;
+        $scope.doccustom = {name: 'bold', spec:'grey',location: 'grey'};
+        $scope.docsortable = ['name','spec', 'location'];
+        $scope.docthumbs = 'thumb';
+        $scope.doccount = 3;
     })
     .controller('ListCtrl', function ($scope, StateService) {
         $scope.title = 'Home Page';
@@ -249,12 +282,12 @@ app.filter('startFrom',function (){
           name: 'Bruno Mars', 
           patient_id: '1131',
           mobile: '834-234-5568',
-          status: 'online'
+          status: '<a>online</a>'
         },{
-          thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg', 
-          name: 'AT-AT', 
-          patient_id: '2131',
-          mobile: '737-868-6754',
+          thumb:'http://www.clipper-group.com/contacts/asia-pacific/india/mumbai/~/media/Images/Contacts/CGO.JPG?mw=698', 
+          name: 'Chandra Sekhar Roy', 
+          patient_id: '5614',
+          mobile: '991-672-5543',
           status: 'online'
         },{
           thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
