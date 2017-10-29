@@ -263,7 +263,7 @@
           </md-table>
         </md-content>
         <hr>
-        <form name="medicaionsForm" id="medicationsForm" ng-submit="addMed()">
+        <form name="medicaionsForm" id="medicationsForm" ng-submit="addMed()" ng-if="loggedInUser.type != 'Patient'">
           <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
             <div layout-gt-sm="row">
               <md-input-container class="md-block" flex-gt-sm="">
