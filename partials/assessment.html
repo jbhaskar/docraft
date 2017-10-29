@@ -5,13 +5,13 @@
       <md-card md-theme="docs-dark" md-theme-watch="">
         <md-card-title>
           <md-card-title-media>
-            <img ng-src="http://www.clipper-group.com/contacts/asia-pacific/india/mumbai/~/media/Images/Contacts/CGO.JPG?mw=698" class="md-card-image card-media" alt="Washed Out">
+            <img ng-src="{{patient.profilePic}}" class="md-card-image card-media" alt="Washed Out">
             <!-- <div class="md-media-lg card-media"></div> -->
           </md-card-title-media>
           <md-card-title-text>
-            <span class="md-headline">Chandra Sekhar Roy</span>
-            <span class="md-subhead">Ph: 991-672-5543</span>
-            <span class="md-subhead">5641</span>
+            <span class="md-headline">{{patient.firstName}} {{patient.lastName}}</span>
+            <span class="md-subhead">Ph: {{patient.mobile}}</span>
+            <span class="md-subhead">{{patient.id}}</span>
           </md-card-title-text>
         </md-card-title>
       </md-card>
@@ -30,17 +30,20 @@
     <md-nav-item md-nav-click="goto('page3')" name="page3" value="page3">
       Vitals
     </md-nav-item>
-    <md-nav-item md-nav-click="goto('page4')" name="page4" value="page4">
-      Advice
-    </md-nav-item>
     <md-nav-item md-nav-click="goto('page5')" name="page5" value="page5">
       Reports
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page4')" name="page4" value="page4">
+      Advice
     </md-nav-item>
     <md-nav-item md-nav-click="goto('page6')" name="page6" value="page6">
       Medications
     </md-nav-item>
     <md-nav-item md-nav-click="goto('page7')" name="page7" value="page7">
       Online Consultation
+    </md-nav-item>
+    <md-nav-item md-nav-click="goto('page7')" name="page7" value="page7">
+      Past History
     </md-nav-item>
 
     <md-button class="pull-right md-primary md-raised" style="position: absolute;right: 20px; bottom: 5px;"  >Save</md-button>
@@ -254,12 +257,56 @@
 
     <md-content ng-show="currentNavItem == 'page6'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-        <form name="medicaionsForm">
+        <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
+          <md-table headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs" count="count" type="'1'">
+            
+          </md-table>
+        </md-content>
+        <hr>
+        <form name="medicaionsForm" id="medicationsForm" ng-submit="addMed()">
           <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
-            <md-table headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs" count="count">
-              
-            </md-table>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>Medication Name(Brand)</label>
+                <input ng-model="med.medication">
+              </md-input-container>
+
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>Generic name</label>
+                <input ng-model="med.generic_name">
+              </md-input-container>
+
+              <md-input-container flex-gt-sm="" flex="15">
+                <label>Form</label>
+                <md-select ng-model="med.form">
+                  <md-option value="tablet">Tablet</md-option>
+                  <md-option value="capsule">Capsule</md-option>
+                  <md-option value="injection">Injection</md-option>
+                  <md-option value="syrup">Syrup</md-option>
+                  <md-option value="drip">Drip</md-option>
+                </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>Dosage</label>
+                <input ng-model="med.dose">
+              </md-input-container>
+
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>Route</label>
+                <input ng-model="med.route">
+              </md-input-container>
+
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>Schedule</label>
+                <input ng-model="med.schedule">
+              </md-input-container>
+            </div>
+            <div layout-gt-sm="row" style="justify-content: flex-end;">
+              <md-button class="pull-right md-primary md-raised" type='submit'>Add</md-button>
+            </div>
           </md-content>
+          
         </form>
       </div>
     </md-content>
@@ -269,7 +316,7 @@
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <form name="consultationForm">
           <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
-            <md-table headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="docapptype">
+            <md-table headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="2" >
               
             </md-table>
           </md-content>
@@ -277,59 +324,6 @@
       </div>
     </md-content>
 
-<div id="md-table-template" ng-hide="true">
-  <table class="md-table" >
-    <thead>
-      <tr class="md-table-headers-row">
-        <th class="md-table-header" ng-repeat="h in headers">
-          <a href="" ng-if="handleSort(h.field)" ng-click="reverse=!reverse;order(h.field,reverse)">
-            {{h.name}} 
-            <i class="ion-android-arrow-dropup" ng-show="reverse &amp;&amp; h.field == predicate"></i>
-            <i class="ion-android-arrow-dropdown" ng-show="!reverse &amp;&amp; h.field == predicate"></i>
-          </a>
-          <span ng-if="!handleSort(h.field)">{{h.name}}</span>
-        </th>
-        <th class="md-table-header"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="md-table-content-row" ng-repeat="c in content | filter:filters | startFrom:tablePage*count | limitTo: count" >
-        <td class="md-table-content" ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs">
-          {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
-        </td>
-        <td ng-if="type=='2'" class="md-table-td-more">
-          <md-button aria-label="Info" ng-href="https://appear.in/telemed" target="_blank"><!-- <i class="ion-android-more-vertical"></i> -->Connect</md-button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <div class="md-table-footer" layout="row">
-    <span class="md-table-count-info">
-      Rows per page : 
-      <a href="" ng-click="goToPage(0); count=10">10</a>,
-      <a href="" ng-click="goToPage(0); count=25">25</a>,
-      <a href="" ng-click="goToPage(0); count=50">50</a>,
-      <a href="" ng-click="goToPage(0); count=100">100</a>
-      (current is {{count}})
-    </span>
-    <span flex="flex"></span>
-    <span ng-show="nbOfPages() &gt; 1">
-      <md-button class="md-primary md-hue-2" ng-disabled="tablePage==0" ng-click="tablePage=tablePage-1" aria-label="Previous Page">
-        <i class="ion-chevron-left" style="font-size:16px"></i>
-      </md-button>
-      <a href="" ng-repeat="i in getNumber(nbOfPages()) track by $index">
-        <md-button class="md-primary md-hue-2 md-table-footer-item" ng-click="goToPage($index)">
-          <span ng-class="{ 'md-table-active-page': tablePage==$index}">{{$index+1}}</span>
-        </md-button>
-      </a>
-      <md-button class="md-primary md-hue-2" ng-disabled="tablePage==nbOfPages()-1" ng-click="tablePage=tablePage+1" aria-label="Next Page">
-        <i class="ion-chevron-right" style="font-size:16px"></i>
-      </md-button>
-    </span>
-  </div>
-
-</div>
   </div>
 </md-card>
 </md-content>

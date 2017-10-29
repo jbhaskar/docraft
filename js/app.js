@@ -9,6 +9,13 @@ app.run(function($rootScope, $location) {
             return $location.url() === "/login";
         };
 
+        $rootScope.bouncetoPath = function(path) {
+            console.log("path");
+            console.log(path);
+            $location.path(path);
+        };
+
+
     });
 
 app.directive('mdTable', function () {
@@ -22,6 +29,7 @@ app.directive('mdTable', function () {
       customClass: '=customClass',
       thumbs:'=', 
       count: '=',
+      tmeplateid: '=',
       type: '='
     },
     controller: function ($scope,$filter,$window) {
@@ -30,8 +38,8 @@ app.directive('mdTable', function () {
       $scope.nbOfPages = function () {
         return Math.ceil($scope.content.length / $scope.count);
       },
-        $scope.handleSort = function (field) {
-          if ($scope.sortable.indexOf(field) > -1) { return true; } else { return false; }
+      $scope.handleSort = function (field) {
+        if ($scope.sortable.indexOf(field) > -1) { return true; } else { return false; }
       };
       $scope.order = function(predicate, reverse) {
           $scope.content = orderBy($scope.content, predicate, reverse);
@@ -45,12 +53,11 @@ app.directive('mdTable', function () {
         $scope.tablePage = page;
       };
     },
-    template: angular.element(document.querySelector('#md-table-template')).html()
+    templateUrl: "partials/patients.html"
   }
 });
 
 //UNCOMMENT BELOW TO BE ABLE TO RESIZE COLUMNS OF THE TABLE
-
 app.directive('mdColresize', function ($timeout) {
   return {
     restrict: 'A',
@@ -125,331 +132,245 @@ app.filter('startFrom',function (){
           .accentPalette('indigo', { 'default': '900'});;
 
         $mdThemingProvider.alwaysWatchTheme(true);
+    }).
+    run(function($rootScope, $location) {
+      $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        // if ($rootScope.loggedInUser == null) {
+        //   // no logged user, redirect to /login
+        //   if ( next.templateUrl === "partials/login.html") {
+        //   } else {
+        //     $location.path("/login");
+        //   }
+        // }
+      });
     })
-    .controller('LoginCtrl', function ($scope, $location, StateService) {
-        $scope.title = 'About Page';
-        $scope.body = 'This is the about page body';
-        $scope.message = StateService.getMessage();
-        $scope.login = true
+    .controller('LoginCtrl', function ($scope, $location, $rootScope, UserService) {
+        $scope.login = function() {
+          var user =  UserService.getUser($scope.email);
+          $rootScope.loggedInUser = user;
+          console.log($rootScope.loggedInUser);
 
-        $scope.updateMessage = function (m) {
-            StateService.setMessage(m);
+          if (user.type == 'Admin') location.href = "#/admin";
+          if (user.type == 'Doc') location.href = "#/list";
+          if (user.type == 'Patient') location.href = "#/assessment/" + user.id;
+
         };
     })
-    .controller('AssessmentCtrl', function ($scope, $routeParams, StateService, ExperimentsService) {
-        $scope.title = 'Experiments Page';
-        $scope.body = 'This is the about experiments body';
-        $scope.patient_id = $routeParams.id
+    .controller('AssessmentCtrl', function ($scope, $routeParams, UserService, MedService) {
+        $scope.patient = UserService.getUserById(parseInt($routeParams.id));
 
         $scope.goto = function(page) {
           console.log("Goto " + page);
-        }
-        $scope.message = StateService.getMessage();
-        $scope.experiments = ExperimentsService.getExperiments();
-
-        $scope.updateMessage = function (m) {
-            StateService.setMessage(m);
         };
 
+        $scope.addMed = function() {
+          MedService.addMed(angular.copy($scope.med));
+          $scope.content = MedService.meds;
+        };
 
         $scope.toggleSearch = false;
-        $scope.docapptype = '2';
-        $scope.medapptype = '1';
         $scope.docheaders = [
-            {
-              name: 'Name', 
-              field: 'name'
-            },{
-              name:'Specialization',
-              field: 'spec'
-            },{
-              name: 'Location', 
-              field: 'location'
-            }
+            { name: 'Name', field: 'name'},
+            { name:'Specialization', field: 'spec' },
+            { name: 'Location', field: 'city'}
         ];
         $scope.headers = [
-            {
-              name: 'Medication Name(Brand)', 
-              field: 'medication'
-            },{
-              name:'Generic Name',
-              field: 'generic_name'
-            },{
-              name: 'Form', 
-              field: 'form'
-            },{
-              name: 'Dose', 
-              field: 'dose'
-            },{
-              name: 'Route', 
-              field: 'route'
-            },{
-              name: 'Schedule', 
-              field: 'schedule'
-            }
+            { name: 'Medication Name(Brand)', field: 'medication' },
+            { name:'Generic Name', field: 'generic_name' },
+            { name: 'Form', field: 'form' },
+            { name: 'Dose', field: 'dose' },
+            { name: 'Route', field: 'route' },
+            { name: 'Schedule', field: 'schedule'}
         ];
 
-        $scope.content = [
-        {
-          thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg', 
-          generic_name: 'Paracetamol 500mg', 
-          form: 'Tablet',
-          medication: 'Ranbaxy Paracep',
-          dose: '1x3',
-          schedule: 'Daily'
-        },{
-          thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg', 
-          generic_name: 'Paracetamol 500mg', 
-          form: 'Tablet',
-          medication: 'Ranbaxy Paracep',
-          dose: '1x3',
-          schedule: 'Daily'
-        },{
-          thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
-          generic_name: 'Paracetamol 500mg', 
-          form: 'Tablet',
-          medication: 'Ranbaxy Paracep',
-          dose: '1x3',
-          schedule: 'Daily'
-        },{
-          thumb:'https://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg', 
-          generic_name: 'Paracetamol 500mg', 
-          form: 'Tablet',
-          medication: 'Ranbaxy Paracep',
-          dose: '1x3',
-          schedule: 'Daily'
-        },{
-          thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg', 
-          generic_name: 'Paracetamol 500mg', 
-          form: 'Tablet',
-          medication: 'Ranbaxy Paracep',
-          dose: '1x3',
-          schedule: 'Daily'
-        }
-        ];
+        $scope.content = MedService.meds;
+        $scope.doccontent = UserService.getDoctors();
 
-        $scope.doccontent = [
-        {
-          name: 'Dr Dhruv Joshi', 
-          spec: 'Nephrologist',
-          location: 'Bangalore'
-        }
-        ];
-
-        $scope.custom = {medication: 'bold', form:'grey',generic_name: 'grey',dose: 'grey',schedule: 'grey'};
+        $scope.custom = {medication: 'bold', form:'grey', generic_name: 'grey', dose: 'grey', schedule: 'grey'};
         $scope.sortable = ['medication','generic_name', 'form', 'dose', 'route', 'schedule'];
         $scope.thumbs = 'thumb';
         $scope.count = 3;
-        $scope.doccustom = {name: 'bold', spec:'grey',location: 'grey'};
-        $scope.docsortable = ['name','spec', 'location'];
+
+        $scope.doccustom = {name: 'bold', spec: 'grey', city: 'grey'};
+        $scope.docsortable = ['name','spec', 'city'];
         $scope.docthumbs = 'thumb';
         $scope.doccount = 3;
     })
-    .controller('ListCtrl', function ($scope, StateService) {
-        $scope.title = 'Home Page';
-        $scope.body = 'This is the about home body';
-
-        $scope.message = StateService.getMessage();
-
-        $scope.updateMessage = function (m) {
-            StateService.setMessage(m);
-        };
-
-
+    .controller('ListCtrl', function ($scope, UserService) {
+        $scope.patients = UserService.getPatients();
         $scope.toggleSearch = false;
         $scope.headers = [
-            {
-              name:'',
-              field:'thumb'
-            },{
-              name: 'Name', 
-              field: 'name'
-            },{
-              name:'Patient ID', 
-              field: 'patient_id'
-            },{
-              name: 'Mobile Number', 
-              field: 'mobile'
-            },{
-              name: 'Status', 
-              field: 'status'
-            }
+            { name: '', field:'thumb' },
+            { name: 'Name', field: 'name' },
+            { name: 'Patient ID', field: 'patient_id' },
+            { name: 'Mobile Number', field: 'mobile' },
+            { name: 'Status', field: 'status' }
         ];
 
-        $scope.content = [
-        {
-          thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg', 
-          name: 'Bruno Mars', 
-          patient_id: '1131',
-          mobile: '834-234-5568',
-          status: '<a>online</a>'
-        },{
-          thumb:'http://www.clipper-group.com/contacts/asia-pacific/india/mumbai/~/media/Images/Contacts/CGO.JPG?mw=698', 
-          name: 'Chandra Sekhar Roy', 
-          patient_id: '5614',
-          mobile: '991-672-5543',
-          status: 'online'
-        },{
-          thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
-          name: 'Mark Ronson', 
-          patient_id: '4231',
-          mobile: '956-342-7768',
-          status: 'offline'
-        },{
-          thumb:'https://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg', 
-          name: 'Daft Punk', 
-          patient_id: '931',
-          mobile: '857-687-4875',
-          status: 'offline'
-        },{
-          thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg', 
-          name: 'Lady Gaga', 
-          patient_id: '451',
-          mobile: '657-384-9586',
-          status: 'online'
-        }
-        ];
+        $scope.content = $scope.patients.map( function(patient){
+          return {
+            thumb: patient.profilePic, 
+            name: patient.firstName + ' ' + patient.lastName,
+            patient_id: patient.id,
+            mobile: patient.mobile,
+            status: patient.status
+          }
+        });
 
         $scope.custom = {name: 'bold', patient_id:'grey',mobile: 'grey',status: 'grey'};
         $scope.sortable = ['name', 'patient_id', 'mobile', 'status'];
         $scope.thumbs = 'thumb';
         $scope.count = 3;
     })
-    .controller('AdminCtrl', function ($scope, StateService, ExperimentsService) {
-        $scope.title = 'Experiments Page';
-        $scope.body = 'This is the about experiments body';
-
-        $scope.message = StateService.getMessage();
-        $scope.experiments = ExperimentsService.getExperiments();
-
-        $scope.updateMessage = function (m) {
-            StateService.setMessage(m);
-        };
-
+    .controller('AdminCtrl', function ($scope, UserService) {
+        $scope.users = UserService.getUsers;
         $scope.toggleSearch = false;
         $scope.headers = [
-            {
-              name:'',
-              field:'thumb'
-            },{
-              name: 'Name', 
-              field: 'name'
-            },{
-              name:'Description', 
-              field: 'description'
-            },{
-              name: 'Last Modified', 
-              field: 'last_modified'
-            }
+            { name: '', field:'thumb' },
+            { name: 'Name', field: 'name' },
+            { name: 'Patient ID', field: 'patient_id' },
+            { name: 'Mobile Number', field: 'mobile' },
+            { name: 'Status', field: 'status' }
         ];
 
-        $scope.content = [
-        {
-          thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg', 
-          name: 'Bruno Mars', 
-          description: 'Human',
-          last_modified: 'Jun 5, 2014'
-        },{
-          thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg', 
-          name: 'AT-AT', 
-          description: 'Robot',
-          last_modified: 'Jun 5, 2014'
-        },{
-          thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg', 
-          name: 'Mark Ronson', 
-          description: 'Human',
-          last_modified: 'Jun 5, 2014'
-        },{
-          thumb:'https://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg', 
-          name: 'Daft Punk', 
-          description: 'Human-Robot',
-          last_modified: 'Jun 5, 2014'
-        },{
-          thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg', 
-          name: 'Lady Gaga', 
-          description: 'Undefined',
-          last_modified: 'Jun 5, 2014'
-        }
-        ];
+        $scope.content = $scope.users.map( function(user){
+          return {
+            thumb: user.profilePic, 
+            name: user.name,
+            patient_id: user.id,
+            mobile: user.mobile,
+            status: "user.status"
+          }
+        });
 
         $scope.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
         $scope.sortable = ['name', 'description', 'last_modified'];
         $scope.thumbs = 'thumb';
         $scope.count = 3;
     })
-    .controller('SignupCtrl', function ($scope, StateService) {
+    .controller('SignupCtrl', function ($scope, $location, UserService) {
         this.myDate = new Date();
         this.isOpen = false;
-        $scope.title = 'Home Page';
-        $scope.body = 'This is the about home body';
 
-        $scope.message = StateService.getMessage();
-
-        $scope.updateMessage = function (m) {
-            StateService.setMessage(m);
-        };
+        $scope.signup = function() {
+          $scope.user.type = 'Patient';
+          $scope.user.id = 5616;
+          if (UserService.addUser(angular.copy($scope.user))) {
+            $location.path("/list");
+          }
+        }
     })
-    .controller('HomeCtrl', function ($scope, StateService) {
+    .controller('HomeCtrl', function ($scope) {
         $scope.title = 'new 1 Home Page';
         $scope.body = 'This is the about docraft';
-
-        $scope.message = StateService.getMessage();
-
-        $scope.updateMessage = function (m) {
-            StateService.setMessage(m);
-        };
     })
-    .factory('StateService', function () {
-        var message = 'Hello Message';
-        var getMessage = function () {
-            return message;
+    .factory('UserService', function () {
+        var users = [
+              { id: 1, firstName: 'Telemed', lastName: 'Telemed', type: "Admin" },
+              {
+                id: 5614,
+                title: "Mr",
+                firstName: 'Chandra Shekhar',
+                lastName: 'Roy',
+                email: 'chandra@tmd.com',
+                profilePic: 'http://www.clipper-group.com/contacts/asia-pacific/india/mumbai/~/media/Images/Contacts/CGO.JPG?mw=698',
+                address1: '509A 7th cross, 6thBlock, Koramangala',
+                city: 'Bangalore',
+                state: 'KA',
+                country: 'IN', 
+                mobile: '9916725543',
+                age: 21,
+                height: 160.0,
+                weight:  72.5,
+                bloodGroup: 'A+',
+                fathersName: 'Rajnikant Roy',
+                addlDetails: '',
+                status: 'online',
+                type: 'Patient'
+              },
+              { id: 2, title: "Dr", firstName: 'Dhruv', lastName: 'Joshi', name: "Dhruv", type: "Doc", email: 'dhruv@tmd.com', spec: 'Nephrologist', city: 'Bangalore'},
+              { 
+                id: 5615,
+                title: "Mrs",
+                firstName: 'Sujan',
+                lastName: 'CH',
+                name: 'Sujan CH',
+                type: "Patient",
+                email: 'sujan@tmd.com',
+                mobile: '9916725425',
+                status: 'online',
+                profilePic: 'https://ak5.picdn.net/shutterstock/videos/4808225/thumb/1.jpg?i10c=img.resize(height:160)'
+              },
+              { id: 3, title: "Dr", firstName: 'Prasanna', lastName: 'Ganapa', name: "Prasanna Ganapa", type: "Doc", email: 'prasanna@tmd.com', spec: 'Medicine', city: 'Pune'}
+            ]
+        var addUser = function (user) {
+            users.push(user);
+            return true;
         };
-        var setMessage = function (m) {
-            message = m;
-        };
-
-        return {
-            getMessage: getMessage,
-            setMessage: setMessage
-        }
-    })
-    .service('ExperimentsService', function () {
-        var service = this,
-            experiments = [
-                {name: 'Experiment 1', description: 'This is an experiment', completed:0},
-                {name: 'Experiment 2', description: 'This is an experiment', completed:0},
-                {name: 'Experiment 3', description: 'This is an experiment', completed:0},
-                {name: 'Experiment 4', description: 'This is an experiment', completed:0}
-            ];
-
-        service.getExperiments = function() {
-            return experiments;
-        };
-    })
-    .directive('experiment', function(){
-        var linker = function (scope, element, attrs) {
-            element.on('click', function(){
-                scope.doExperiment();
-            })
-        };
-
-        var controller =  function($scope){
-            $scope.doExperiment = function() {
-                $scope.$apply(function(){
-                    $scope.experiment.completed++;
-                });
+        var getUser = function (email) {
+            for(var i=0; i< users.length; i++){
+              if(users[i].email == email){
+                return users[i];
+                break;
+              }
             };
         };
+        var getUserById = function (id) {
+          for(var i=0; i< users.length; i++){
+            if(users[i].id == id){
+              return users[i];
+              break;
+            }
+          };
+        };
 
+        var getDoctors = function () {
+          var docs = [];
+          for(var i=0; i< users.length; i++){
+            if(users[i].type === 'Doc'){
+              docs.push(users[i]);
+            }
+          }
+          return docs;
+        };
+
+        var getPatients = function () {
+          var patients = [];
+          for(var i=0; i< users.length; i++){
+            if(users[i].type === 'Patient'){
+              patients.push(users[i]);
+            }
+          }
+          return patients;
+        };
         return {
-            scope: true,
-            restrict: 'E',
-            template: '<div class="experiment">' +
-                '<h3>{{experiment.name}}</h3>' +
-                '<p>{{experiment.description}}</p>' +
-                '<p><strong>{{experiment.completed}}</strong></p>' +
-                '</div>',
-            link: linker,
-            controller: controller
+            getUser: getUser,
+            getUsers: users,
+            addUser: addUser,
+            getUserById: getUserById,
+            getDoctors: getDoctors,
+            getPatients: getPatients
         }
+    
+    })
+    .factory('MedService', function () {
+      var meds = [
+        {
+          generic_name: 'Paracetamol 500mg', 
+          form: 'Tablet',
+          medication: 'Ranbaxy Paracep',
+          dose: '1 tablet',
+          schedule: 'Twice Daily',
+          route: 'Test'
+        }
+      ];
+
+      var addMed = function(med) {
+        meds.push(med);
+      }
+
+      return {
+        meds: meds,
+        addMed: addMed
+      }
     });

@@ -4,7 +4,7 @@
       <div>
 
         <h1>Patient Registration</h1>
-        <form name="userForm">
+        <form name="userForm" ng-submit="signup()">
           <div layout-gt-sm="row">
             <md-input-container flex-gt-sm="" flex="15">
               <label>Title</label>
@@ -70,7 +70,7 @@
 
           <md-input-container class="md-block">
             <label>Address</label>
-            <input ng-model="user.address">
+            <input ng-model="user.address1">
           </md-input-container>
 
           <md-input-container class="md-block">
@@ -120,10 +120,10 @@
           </div>
           <md-input-container class="md-block">
             <label>Emergeny Contact Details</label>
-            <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            <textarea ng-model="user.addlDetails" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
           </md-input-container>
 
-          <md-button class="md-raised md-primary" flex-gt-sm="row">Register</md-button>
+          <md-button class="md-raised md-primary" type="submit" flex-gt-sm="row">Register</md-button>
         </form>
       </div>
       </md-card>

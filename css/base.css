@@ -12,19 +12,19 @@ body {
 }
 
 .copyright {
-    background: #303F9F;
+    background: #f8f8f8;
     
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ccc;    
+    color: #333;    
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #303F9F;
+    background: #f8f8f8;
     padding: 10px 40px;
 
 }
@@ -34,7 +34,7 @@ body {
     font-size: 14px;
     /*padding: 10px;*/
     font-weight: 300;
-    color: #fff;
+    /*color: #fff;*/
     font-family: Verdana;
 }
 
@@ -50,6 +50,9 @@ body {
 }
 
 #header h1#logo {
+    background: url(../images/logo1.jpg) no-repeat;
+    min-width: 166px;
+    min-height: 40px;
     float: left;
     margin: 0;
     line-height: 0.8;
@@ -106,7 +109,7 @@ body {
 .login-container button {
     width: 100%;
     border: 1px solid #fff;
-    background: #0276C0;
+    /*background: #0276C0;*/
     color: #fff;
     padding: 10px; 
     box-shadow: #ccc 0px 2px 26px 2px
