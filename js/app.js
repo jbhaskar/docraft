@@ -228,7 +228,7 @@ app.filter('startFrom',function (){
         $scope.headers = [
             { name: '', field:'thumb' },
             { name: 'Name', field: 'name' },
-            { name: 'Patient ID', field: 'patient_id' },
+            { name: 'User ID', field: 'patient_id' },
             { name: 'Mobile Number', field: 'mobile' },
             { name: 'Status', field: 'status' }
         ];
@@ -239,7 +239,7 @@ app.filter('startFrom',function (){
             name: user.name,
             patient_id: user.id,
             mobile: user.mobile,
-            status: "user.status"
+            status: user.status
           }
         });
 
@@ -288,7 +288,8 @@ app.filter('startFrom',function (){
                 status: 'online',
                 type: 'Patient'
               },
-              { id: 2, title: "Dr", firstName: 'Dhruv', lastName: 'Joshi', name: "Dhruv", type: "Doc", email: 'dhruv@tmd.com', spec: 'Nephrologist', city: 'Bangalore'},
+              { id: 2, title: "Dr", firstName: 'Dhruv', profilePic: 'http://www.allwhitebackground.com/images/3/3321.png',
+                lastName: 'Joshi', name: "Dhruv", type: "Doc", email: 'dhruv@tmd.com', spec: 'Nephrologist', city: 'Bangalore'},
               { 
                 id: 5615,
                 title: "Mrs",
