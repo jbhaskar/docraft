@@ -1,6 +1,6 @@
-var app = angular.module('docraft', ['ngRoute', 'ngAnimate', 'ngAria', 'ngMaterial' ])
+var app = angular.module('docraft', ['ngRoute', 'ngAnimate', 'ngAria', 'ngMaterial', 'ngCookies' ])
 
-app.run(function($rootScope, $location) {
+app.run(function($rootScope, $location, $cookies) {
         $rootScope.showAccountMenu = function($mdMenu, ev) {
             $mdMenu.open(ev);
         };
@@ -9,12 +9,11 @@ app.run(function($rootScope, $location) {
             return $location.url() === "/login";
         };
 
-        $rootScope.bouncetoPath = function(path) {
-            console.log("path");
-            console.log(path);
-            $location.path(path);
-        };
 
+        $rootScope.userLogout = function() {
+            $cookies.remove('CurrUser');
+            return $location.path("/login");
+        };
 
     });
 
@@ -133,22 +132,26 @@ app.filter('startFrom',function (){
 
         $mdThemingProvider.alwaysWatchTheme(true);
     }).
-    run(function($rootScope, $location) {
+    run(function($rootScope, $location, $cookies) {
       $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        // if ($rootScope.loggedInUser == null) {
-        //   // no logged user, redirect to /login
-        //   if ( next.templateUrl === "partials/login.html") {
-        //   } else {
-        //     $location.path("/login");
-        //   }
-        // }
+        if ($cookies.get('CurrUser') == null) {
+          // no logged user, redirect to /login
+          if ( next.templateUrl === "partials/login.html") {
+          } else {
+            $location.path("/login");
+          }
+        }
       });
     })
     .controller('LoginCtrl', function ($scope, $location, $rootScope, UserService) {
         $scope.login = function() {
           var user =  UserService.getUser($scope.email);
-          $rootScope.loggedInUser = user;
-          console.log($rootScope.loggedInUser);
+          if ($scope.password == 't3l3m3d' ) {
+            UserService.setCurrentUser(user);
+            $rootScope.loggedInUser = user;
+            console.log($rootScope.loggedInUser);
+          }
+
 
           if (user.type == 'Admin') location.href = "#/admin";
           if (user.type == 'Doc') location.href = "#/list";
@@ -198,6 +201,7 @@ app.filter('startFrom',function (){
     })
     .controller('ListCtrl', function ($scope, UserService) {
         $scope.patients = UserService.getPatients();
+        $scope.currentUser = UserService.getCurrentUser();
         $scope.toggleSearch = false;
         $scope.headers = [
             { name: '', field:'thumb' },
@@ -264,7 +268,7 @@ app.filter('startFrom',function (){
         $scope.title = 'new 1 Home Page';
         $scope.body = 'This is the about docraft';
     })
-    .factory('UserService', function () {
+    .factory('UserService', function ($cookies) {
         var users = [
               { id: 1, firstName: 'Telemed', lastName: 'Telemed', type: "Admin" },
               {
@@ -302,12 +306,23 @@ app.filter('startFrom',function (){
                 status: 'online',
                 profilePic: 'https://ak5.picdn.net/shutterstock/videos/4808225/thumb/1.jpg?i10c=img.resize(height:160)'
               },
-              { id: 3, title: "Dr", firstName: 'Prasanna', lastName: 'Ganapa', name: "Prasanna Ganapa", type: "Doc", email: 'prasanna@tmd.com', spec: 'Medicine', city: 'Pune'}
+              { id: 3, title: "Dr", firstName: 'Prasanna', lastName: 'Ganapa', 
+                name: "Prasanna Ganapa", type: "Doc", email: 'prasanna@tmd.com', spec: 'Medicine', city: 'Pune'}
             ]
         var addUser = function (user) {
             users.push(user);
             return true;
         };
+
+        var setCurrentUser = function (user) {
+            $cookies.putObject('CurrUser', user);
+            return true;
+        };
+        
+        var getCurrentUser = function () {
+            return $cookies.get('CurrUser');
+        };
+
         var getUser = function (email) {
             for(var i=0; i< users.length; i++){
               if(users[i].email == email){
@@ -348,6 +363,8 @@ app.filter('startFrom',function (){
             getUser: getUser,
             getUsers: users,
             addUser: addUser,
+            setCurrentUser: setCurrentUser,
+            getCurrentUser: getCurrentUser,
             getUserById: getUserById,
             getDoctors: getDoctors,
             getPatients: getPatients
