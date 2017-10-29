@@ -25,7 +25,7 @@
         <td class="md-table-content" ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs">
           {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
         </td>
-        <td class="md-table-td-more" ng-if="type == '0'">
+        <td class="md-table-td-more" ng-if="type == '0'" ng-hide="c.patient_id == loggedInUser.id">
           <md-button aria-label="Info" ng-href="#/assessment/{{c.patient_id}}"><!-- <i class="ion-android-more-vertical"></i> -->Details</md-button>
         </td>
         <td ng-if="type=='2'" class="md-table-td-more">

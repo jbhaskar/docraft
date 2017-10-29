@@ -69,25 +69,25 @@
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Present Complaints</label>
-              <textarea ng-model="patient.presentCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+              <textarea ng-init="patient.presentCondition = 'This is demo data.'" ng-model="patient.presentCondition" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Past History</label>
-              <textarea ng-model="patient.pastHistory" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+              <textarea ng-init="patient.pastHistory = 'This is demo data.'" ng-model="patient.pastHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Social History</label>
-              <textarea ng-model="patient.socialHistory" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+              <textarea ng-init="patient.socialHistory = 'This is demo data.'" ng-model="patient.socialHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Allergy History</label>
-              <textarea ng-model="patient.allergyHistory" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+              <textarea ng-init="patient.allergyHistory = 'This is demo data.'" ng-model="patient.allergyHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
             </md-input-container>
 
           </div>
@@ -102,13 +102,13 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>General Condition</label>
-              <textarea ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+              <textarea ng-init="patient.generalCondition = 'This is demo data.'" ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
             </md-input-container>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Systematic Examination</label>
-              <textarea ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+              <textarea ng-init="patient.systematicExamination = 'This is demo data.'" ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
             </md-input-container>
           </div>
         </form>
@@ -119,34 +119,34 @@
     <md-content ng-show="currentNavItem == 'page3'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <form name="patientHistoryForm">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center" >
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Pulse rate (per minute)</label>
-              <input type="number" ng-model="patient.pulseRate"></input>
+              <input ng-init="patient.pulseRate = 60" type="number" ng-model="patient.pulseRate" ng-readonly="loggedInUser.id == 2"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Blood Pressure (SBP/DBP in mmHg)</label>
-              <input type="text" ng-model="patient.bp"></input>
+              <input ng-init="patient.bp = '120/80'" type="text" ng-model="patient.bp" ng-readonly="loggedInUser.id == 2"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Respiratory rate (per minute)</label>
-              <input type="number" ng-model="patient.respRate"></input>
+              <input ng-init="patient.respRate = 24" type="number" ng-model="patient.respRate" ng-readonly="loggedInUser.id == 2"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Temperature (&#8457;)</label>
-              <input type="number" ng-model="patient.temperature"></input>
+              <input ng-init="patient.temperature = 99" type="number" ng-model="patient.temperature" ng-readonly="loggedInUser.id == 2"></input>
             </md-input-container>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
             <md-input-container class="md-block" flex-gt-sm="">
               <label>SpO2 (%)</label>
-              <input type="number" ng-model="patient.spo2"></input>
+              <input ng-init="patient.spo2 = 20" type="number" ng-model="patient.spo2" ng-readonly="loggedInUser.id == 2"></input>
             </md-input-container>
           </div>
         </form>
@@ -186,7 +186,7 @@
             <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
               <div layout="row" flex="50">Biochemistry</div>
               <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide">
+                <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
                 <md-input-container flex class="md-block">
                   <input type="text" ng-model="biochemistry" disabled>
                   <div class="hint">Select your file</div>
@@ -203,7 +203,7 @@
             <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
               <div layout="row" flex="50">Pathology Reports</div>
               <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide">
+                <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
                 <md-input-container flex class="md-block">
                   <input type="text" ng-model="pathology" disabled>
                   <div class="hint">Select your file</div>
