@@ -362,6 +362,9 @@ md-input-container.md-docs-dark-theme md-select {
     flex-wrap: wrap;
 }
 
+.consultation form {
+    min-width: 333px;
+}
 .consultation iframe {
     width: 100%;
     min-height: 400px;
