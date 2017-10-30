@@ -270,12 +270,13 @@ app.filter('startFrom',function (){
     })
     .factory('UserService', function ($cookies) {
         var users = [
-              { id: 1, firstName: 'Telemed', lastName: 'Telemed', type: "Admin" },
+              { id: 1, firstName: 'Telemed', lastName: 'Telemed', type: "Admin", name: 'Admin' },
               {
                 id: 5614,
                 title: "Mr",
                 firstName: 'Chandra Shekhar',
                 lastName: 'Roy',
+                name: 'Chandra Shekhar Roy',
                 email: 'chandra@tmd.com',
                 profilePic: 'http://www.clipper-group.com/contacts/asia-pacific/india/mumbai/~/media/Images/Contacts/CGO.JPG?mw=698',
                 address1: '509A 7th cross, 6thBlock, Koramangala',
@@ -284,16 +285,16 @@ app.filter('startFrom',function (){
                 country: 'IN', 
                 mobile: '9916725543',
                 age: 21,
-                height: 160.0,
-                weight:  72.5,
-                bloodGroup: 'A+',
+                height: 180.0,
+                weight:  80.0,
+                bloodGroup: 'O+',
                 fathersName: 'Rajnikant Roy',
                 addlDetails: '',
                 status: 'online',
                 type: 'Patient'
               },
               { id: 2, title: "Dr", firstName: 'Dhruv', profilePic: 'http://www.allwhitebackground.com/images/3/3321.png',
-                lastName: 'Joshi', name: "Dhruv", type: "Doc", email: 'dhruv@tmd.com', spec: 'Nephrologist', city: 'Bangalore'},
+                lastName: 'Joshi', name: "Dhruv Joshi", type: "Doc", email: 'dhruv@tmd.com', spec: 'Nephrologist', city: 'Bangalore'},
               { 
                 id: 5615,
                 title: "Mrs",
@@ -374,12 +375,20 @@ app.filter('startFrom',function (){
     .factory('MedService', function () {
       var meds = [
         {
-          generic_name: 'Paracetamol 500mg', 
+          generic_name: 'Clopidogrel', 
           form: 'Tablet',
-          medication: 'Ranbaxy Paracep',
-          dose: '1 tablet',
+          medication: 'Clopitab',
+          dose: '300 mg',
           schedule: 'Twice Daily',
-          route: 'Test'
+          route: 'oral'
+        },
+        {
+          generic_name: 'Aspirin', 
+          form: 'Tablet',
+          medication: 'Dispirin',
+          dose: '375 mg',
+          schedule: 'Once Daily',
+          route: 'oral'
         }
       ];
 
