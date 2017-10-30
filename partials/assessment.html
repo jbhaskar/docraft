@@ -20,7 +20,7 @@
 
 <md-content class="md-padding">
   <md-card md-theme="docs-dark" md-theme-watch="">
-  <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='page1'" nav-bar-aria-label="navigation links">
+  <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='page7'" nav-bar-aria-label="navigation links">
     <md-nav-item md-nav-click="goto('page1')" name="page1" value="page1">
       History
     </md-nav-item>
@@ -317,7 +317,7 @@
     
 
     <md-content ng-show="currentNavItem == 'page7'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout="row" flex="1" layout-align="center">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 consultation" >
         <form name="consultationForm">
           <md-content layout="row" flex="flex" ng-click="toggleSearch=false">
             <md-table headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="2" >
@@ -325,8 +325,6 @@
             </md-table>
           </md-content>
         </form>
-      </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout="row" flex="flex" layout-align="center">
       
         <iframe src="http://stackoverflow.com/" name="iframe_a">
           <p>Your browser does not support iframes.</p>

@@ -352,3 +352,17 @@ md-input-container.md-docs-dark-theme md-select {
 .assessment textarea {
     min-height: 120px;
 }
+
+.consultation {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 373px;
+    flex-wrap: wrap;
+}
+
+.consultation iframe {
+    width: 100%;
+    min-height: 400px;
+}
