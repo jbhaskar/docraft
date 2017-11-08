@@ -1,9 +1,9 @@
-import '../css/base.scss';
+import "../css/base.scss";
 import '../images/capsule1.svg';
 import '../images/stetho.svg';
 import '../images/chems.svg';
 import '../images/report.svg';
-import '../images/heartreport.svg';
+import '../images/heartReport.svg';
 import '../images/medconsult.svg';
 import '../images/top-shadow.png';
 import '../tmd.pdf';
