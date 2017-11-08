@@ -1,7 +1,7 @@
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 #header {
@@ -84,8 +84,8 @@ body {
 .shadow {
     background: url(../images/top-shadow.png) repeat-x;
     height: 36px;
-    position: relative;
-    top:30px;
+    position: absolute;
+    top:60px;
     width: 100%;
 }
 
@@ -96,12 +96,18 @@ body {
     height: 100%;
     align-items: center;
     display: flex;
+    background: url(../images/bckgrnd.jpeg);
+    background-size: 80%;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
 }
 
 .login-container {
+    height: 100%;
     min-width: 300px;
     max-width: 400px;
-    margin: 0 auto;
+    margin-right: 40px;
+    // margin: 0 auto;
     border: 1px solid #fff;
     box-shadow: #ccc 0px 2px 26px 2px
     /*padding: 20px;*/
@@ -316,23 +322,124 @@ md-input-container.md-docs-dark-theme md-select {
     font-weight: 700;
 }
 
-.assessment .card-media {
-  background-color: #ccc;
-  max-height: 160px;
-  max-width: 160px;
-}
+.assessment {
+  background: #fff;
+
+  .card-media {
+    background-color: #ccc;
+    max-height: 160px;
+    max-width: 160px;
+  }
+
+  .assessment-body {
+    padding: 20px 60px;
+    // top: 40px;
+    position: relative;
+  }
+  .md-sidenav-left.expand {
+    width: 300px;
+    .md-nav-bar {
+      ul {
+        .md-button {
+
+          md-icon {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+          }
+
+          .tabTitle {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+  .md-sidenav-left {
+    top: 120px;
+    position: fixed;
+    width: 60px;
+    transition: all 1s ease;
+    background: transparent;
+
+    .md-nav-bar {
+      height: 100%;
+      max-height: 800px;
+      /*width: 30%;*/
+      display: flex;
+      // border: 1px solid rgb(63,81,181);
+
+      /*align-items: center;*/
+
+      ul {
+        flex-direction: column;
+
+        .md-button {
+          background: #f8f8f8;
+          color: rgba(0,0,0,0.54);
+          padding-left: 10px;
+          md-icon {
+            color: rgb(63,81,181) !important;
+            height: 40px;
+            width: 40px;
+            // transition: all 0.5s ease-in-out;
+          }
+
+          .tabTitle {
+            visibility: hidden;
+            transition: all 0.6s ease;
+          }
+        }
+        .md-button.md-active {
+          background: rgb(63,81,181);
+          color: #fff;
+
+          md-icon {
+            color: #fff !important;
+          }
+        }
+
+      }
+
+      md-nav-ink-bar {
+        display: none;
+      }
+
+      nav {
+        width: 100%;
+      }
+
+    }
+  }
 
 
-.assessment md-card-title-text {
-  padding-left: 16px; }
+  md-card-title-text {
+    padding-left: 16px; 
+  }
 
-.assessment .md-nav-bar {
-    height: 56px;
-    display: flex;
-    align-items: center;
+
+
+  .patientReportsForm {
+    md-input-container.md-block {
+      margin: 0;
+    }
+  }
+
+  md-content {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+  }
+
 }
 .assessment md-nav-bar .md-button._md-nav-button {
     line-height: 32px;
+    width: 100%;
+    text-align: left;
+    margin: 0;
 }
 
 .header-content p .md-button {

@@ -1,366 +1,435 @@
-<div class="assessment">
+<div class="assessment" layout='row'>
 
-<md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs="" flex-gt-xs="" layout="column">
-      <md-card md-theme="docs-dark" md-theme-watch="">
-        <md-card-title>
-          <md-card-title-media>
-            <img ng-src="{{patient.profilePic}}" class="md-card-image card-media" alt="Washed Out">
-            <!-- <div class="md-media-lg card-media"></div> -->
-          </md-card-title-media>
-          <md-card-title-text>
-            <span class="md-headline">{{patient.firstName}} {{patient.lastName}}</span>
-            <span class="md-subhead">Ph: {{patient.mobile}}</span>
-            <span class="md-subhead">{{patient.id}}</span>
-          </md-card-title-text>
-        </md-card-title>
-      </md-card>
+  <md-sidenav md-is-open='true' 
+              md-component-id="left" 
+              class="md-sidenav-left" 
+              id="leftSideNav" 
+              md-disable-backdrop="true"
+              ng-class="{expand: hover}"
+              ng-mouseenter="hover = true"
+              ng-mouseleave="hover = false"
+
+  >
+    <div flex>
+      <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='Online'" nav-bar-aria-label="navigation links">
+      <md-nav-item name="page0" value="page0">
+        Patient Information
+      </md-nav-item>
+
+      <!-- <md-nav-item ng-repeat="tab in tabs" md-nav-click="goto('{{tab.title}}')" name="{{tab.title}}" value="{{tab.title}}">
+        <md-icon ng-bind="'history'"></md-icon><span> {{tab.title}}</span>
+      </md-nav-item> -->
+      <md-nav-item md-nav-click="goto('History')" name="History" value="History">
+        <md-icon ng-bind="'history'" style="padding: 2px; text-align: center; font-size: 28px"></md-icon><span class="tabTitle"> History</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Examination')" name="Examination" value="Examination">
+        <md-icon md-svg-src="../images/stetho.svg"></md-icon><span class="tabTitle"> Examination</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Vitals')" name="Vitals" value="Vitals">
+        <md-icon md-svg-src="../images/chems.svg"></md-icon><span class="tabTitle"> Vitals</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Reports')" name="Reports" value="Reports">
+        <md-icon md-svg-src="../images/report.svg"></md-icon><span class="tabTitle"> Reports</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Advice')" name="Advice" value="Advice">
+        <md-icon md-svg-src="../images/heartreport.svg"></md-icon><span class="tabTitle"> Advice</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Medications')" name="Medications" value="Medications">
+        <md-icon md-svg-src="../images/capsule1.svg"></md-icon><span class="tabTitle"> Medications</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Online')" name="Online" value="Online">
+        <md-icon md-svg-src="../images/medconsult.svg"></md-icon><span class="tabTitle"> Online</span>
+      </md-nav-item>
+      <md-nav-item md-nav-click="goto('Offline')" name="Offline" value="Offline">
+        <md-icon ng-bind="'account_circle'" style="padding: 2px; text-align: center; font-size: 28px"></md-icon><span class="tabTitle"> Offline</span>
+      </md-nav-item>
+      <!-- <md-nav-item md-nav-click="goto('Online')" name="Online" value="Online">
+        <md-icon ng-bind="'account_circle'"></md-icon><span class="tabTitle"> Past History</span>
+      </md-nav-item> -->
+
+      <!-- these require actual routing with ui-router or ng-route, so they
+      won't work in the demo
+      <md-nav-item md-nav-href="#Advice" name="Reports">Page Four</md-nav-item>
+      <md-nav-item md-nav-sref="app.Reports" name="Advice">Page Five</md-nav-item>
+      You can also add options for the <code>ui-sref-opts</code> attribute.
+      <md-nav-item md-nav-sref="Medications" sref-opts="{reload:true, notify:true}">
+        Page Six
+      </md-nav-item>
+      -->
+      </md-nav-bar>  
     </div>
-  </md-content>
+  </md-sidenav>
 
-<md-content class="md-padding">
-  <md-card md-theme="docs-dark" md-theme-watch="">
-  <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='page1'" nav-bar-aria-label="navigation links">
-    <md-nav-item md-nav-click="goto('page1')" name="page1" value="page1">
-      History
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page2')" name="page2" value="page2">
-      Examination
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page3')" name="page3" value="page3">
-      Vitals
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page5')" name="page5" value="page5">
-      Reports
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page4')" name="page4" value="page4">
-      Advice
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page6')" name="page6" value="page6">
-      Medications
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page7')" name="page7" value="page7">
-      Online
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page7')" name="page7" value="page7">
-      Past History
-    </md-nav-item>
-    <md-nav-item md-nav-click="goto('page9')" name="page9" value="page9">
-      Offline
-    </md-nav-item>
-
-    <md-button class="pull-right md-primary md-flat" style="position: absolute;right: 80px; bottom: 5px;"  >Save</md-button>
-    <md-button class="pull-right md-primary md-flat" style="position: absolute;right: 0px; bottom: 5px;"  ng-href="/tmdpdf"><md-icon class="material-icons">print</md-icon></md-button>
-    <!-- these require actual routing with ui-router or ng-route, so they
-    won't work in the demo
-    <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-    <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-    You can also add options for the <code>ui-sref-opts</code> attribute.
-    <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-      Page Six
-    </md-nav-item>
-    -->
-  </md-nav-bar>
-  <div class="ext-content">
-    <!-- External content for `<span>{{currentNavItem}}</span>`. -->
-
-
-
-    <md-content ng-show="currentNavItem == 'page1'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-        <form name="patientHistoryForm">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Present Complaints</label>
-              <textarea ng-init="patient.presentCondition = 'H/O chest pain since morning with sweating, breathlessness.'" ng-model="patient.presentCondition" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Past History</label>
-              <textarea ng-init="patient.pastHistory = 'Known c/o Diabetes Mellitus and Hypertension on medications for 15 years.'" ng-model="patient.pastHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Social History</label>
-              <textarea ng-init="patient.socialHistory = 'Known smoker since 20 years.'" ng-model="patient.socialHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Allergy History</label>
-              <textarea ng-init="patient.allergyHistory = 'No known allergy'" ng-model="patient.allergyHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
-            </md-input-container>
-
-          </div>
-        </form>
-      </div>
-    </md-content>
-
-
-    <md-content ng-show="currentNavItem == 'page2'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-        <form name="patientHistoryForm">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>General Condition</label>
-              <textarea md-detect-hidden ng-init="patient.generalCondition = 'Obese built in sever distress due to pain. Breathless and sweating.'" ng-model="patient.generalCondition" md-maxlength="150" rows="5" ng-readonly="loggedInUser.id == 2" ></textarea>
-            </md-input-container>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Systematic Examination</label>
-              <textarea md-detect-hidden ng-init="patient.systematicExamination = 'CVS: Tachycardia , No Murmurs \nRS: NVBS\nCNS: NAD\nGI: NAD'" ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
-            </md-input-container>
-          </div>
-        </form>
-      </div>
-    </md-content>
+  <div class="assessment-body md-padding" flex layout='column'>
     
-
-    <md-content ng-show="currentNavItem == 'page3'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <form name="patientHistoryForm">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center" >
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Pulse rate (per minute)</label>
-              <input ng-init="patient.pulseRate = 60" type="number" ng-model="patient.pulseRate" ng-readonly="loggedInUser.id == 2"></input>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Blood Pressure (SBP/DBP in mmHg)</label>
-              <input ng-init="patient.bp = '120/80'" type="text" ng-model="patient.bp" ng-readonly="loggedInUser.id == 2"></input>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Respiratory rate (per minute)</label>
-              <input ng-init="patient.respRate = 24" type="number" ng-model="patient.respRate" ng-readonly="loggedInUser.id == 2"></input>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Temperature (&#8457;)</label>
-              <input ng-init="patient.temperature = 97" type="number" ng-model="patient.temperature" ng-readonly="loggedInUser.id == 2"></input>
-            </md-input-container>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>SpO2 (%)</label>
-              <input ng-init="patient.spo2 = 98" type="number" ng-model="patient.spo2" ng-readonly="loggedInUser.id == 2"></input>
-            </md-input-container>
-          </div>
-        </form>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+      <div flex-xs="" flex-gt-xs="" layout="column">
+        <md-card md-theme="docs-dark" md-theme-watch="">
+          <md-card-title>
+            <md-card-title-media>
+              <img ng-src="{{patient.profilePic}}" class="md-card-image card-media" alt="Washed Out">
+              <!-- <div class="md-media-lg card-media"></div> -->
+            </md-card-title-media>
+            <md-card-title-text>
+              <span class="md-headline">{{patient.firstName}} {{patient.lastName}}</span>
+              <span class="md-subhead">Ph: {{patient.mobile}}</span>
+              <span class="md-subhead">{{patient.id}}</span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card>
       </div>
     </md-content>
 
-    <md-content ng-show="currentNavItem == 'page4'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <form name="patientAdviceForm">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Provisional Diagnosis</label>
-              <textarea md-detect-hidden ng-init="Angina with DM with Hypertension." ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
-            </md-input-container>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>Investigations</label>
-              <textarea md-detect-hidden ng-init="patient.investigations = 'Do CBC with lipid profile and cardiac markers, ECG, 2D Echo'" ng-model="patient.investigations" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
-            </md-input-container>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="">
-              <label>General Advice</label>
-              <textarea md-detect-hidden ng-init="patient.generalAdvice = 'Bed rest, avoid exertion, Continue antihypertensive and anti-diabetic medications. Follow up after a week or immediately if symptoms appears again.'" ng-model="patient.generalAdvice" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
-            </md-input-container>
-          </div>
-        </form>
-      </div>
-    </md-content>
+    <md-content class="md-padding md-raised">
+      <md-card md-theme="docs-dark" layout='row' md-theme-watch="">
+        <!-- <div flex='25'>
+          <md-nav-bar md-selected-nav-item="currentNavItem" md-theme="docs-dark" ng-init="currentNavItem='History'" nav-bar-aria-label="navigation links">
+          <md-nav-item name="page0" value="page0">
+            Patient Information
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('History')" name="History" value="History">
+            <md-icon ng-bind="'account_circle'"></md-icon> History
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Examination')" name="Examination" value="Examination">
+            <md-icon ng-bind="'account_circle'"></md-icon> Examination
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Vitals')" name="Vitals" value="Vitals">
+            <md-icon ng-bind="'account_circle'"></md-icon> Vitals
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Reports')" name="Reports" value="Reports">
+            <md-icon ng-bind="'account_circle'"></md-icon> Reports
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Advice')" name="Advice" value="Advice">
+            <md-icon ng-bind="'account_circle'"></md-icon> Advice
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Medications')" name="Medications" value="Medications">
+            <md-icon ng-bind="'account_circle'"></md-icon> Medications
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Online')" name="Online" value="Online">
+            <md-icon ng-bind="'account_circle'"></md-icon> Online
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Online')" name="Online" value="Online">
+            <md-icon ng-bind="'account_circle'"></md-icon> Past History
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('Offline')" name="Offline" value="Offline">
+            <md-icon ng-bind="'account_circle'"></md-icon> Offline
+          </md-nav-item>
+
+          <md-button class="pull-right md-primary md-flat" style="position: absolute;right: 80px; bottom: 5px;"  >Save</md-button>
+          <md-button class="pull-right md-primary md-flat" style="position: absolute;right: 0px; bottom: 5px;"  ng-href="/tmdpdf"><md-icon class="material-icons">print</md-icon></md-button>
+          </md-nav-bar>  
+        </div> -->
+        
+        <div class="ext-content" flex>
+          <!-- External content for `<span>{{currentNavItem}}</span>`. -->
+             <md-toolbar class="md-hue-2">
+              <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-click="hover = !hover">
+                  <md-icon ng-bind="'menu'"></md-icon>
+                </md-button>
+
+                <h2 flex="" md-truncate="">{{currentNavItem}}</h2>
+
+                <md-button class="md-button" aria-label="Favorite">
+                  Save
+                </md-button>
+
+                <md-button class="md-icon-button" aria-label="More" ng-href="/tmd.pdf" target="_blank">
+                  <md-icon class="material-icons">print</md-icon>
+                </md-button>
+              </div>
+            </md-toolbar>
 
 
-    <md-content ng-show="currentNavItem == 'page5'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <form name="patientReportsForm">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
-              <div layout="row" flex="50">Biochemistry</div>
-              <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
-                <md-input-container flex class="md-block">
-                  <input type="text" ng-model="biochemistry" disabled>
-                  <div class="hint">Select your file</div>
-                </md-input-container>
-                <div>
-                  <md-button id="uploadButton" class="md-fab md-mini">
-                    <md-icon class="material-icons">attach_file</md-icon>
-                  </md-button>
+          <md-content ng-show="currentNavItem == 'History'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <form name="patientHistoryForm">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Present Complaints</label>
+                    <textarea ng-init="patient.presentCondition = 'H/O chest pain since morning with sweating, breathlessness.'" ng-model="patient.presentCondition" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
+                  </md-input-container>
                 </div>
-              </choose-file>  
-            </md-input-container>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
-              <div layout="row" flex="50">Pathology Reports</div>
-              <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
-                <md-input-container flex class="md-block">
-                  <input type="text" ng-model="pathology" disabled>
-                  <div class="hint">Select your file</div>
-                </md-input-container>
-                <div>
-                  <md-button id="uploadButton" class="md-fab md-mini">
-                    <md-icon class="material-icons">attach_file</md-icon>
-                  </md-button>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Past History</label>
+                    <textarea ng-init="patient.pastHistory = 'Known c/o Diabetes Mellitus and Hypertension on medications for 15 years.'" ng-model="patient.pastHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
+                  </md-input-container>
                 </div>
-              </choose-file>  
-            </md-input-container>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
-              <div layout="row" flex="50">Imaging (X-Ray/Echo/USG/CT/MRI etc.)</div>
-              <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide">
-                <md-input-container flex class="md-block">
-                  <input type="text" ng-model="imaging" disabled>
-                  <div class="hint">Select your file</div>
-                </md-input-container>
-                <div>
-                  <md-button id="uploadButton" class="md-fab md-mini">
-                    <md-icon class="material-icons">attach_file</md-icon>
-                  </md-button>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Social History</label>
+                    <textarea ng-init="patient.socialHistory = 'Known smoker since 20 years.'" ng-model="patient.socialHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
+                  </md-input-container>
                 </div>
-              </choose-file>  
-            </md-input-container>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
-              <div layout="row" flex="50">Others</div>
-              <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide">
-                <md-input-container flex class="md-block">
-                  <input type="text" ng-model="others" disabled>
-                  <div class="hint">Select your file</div>
-                </md-input-container>
-                <div>
-                  <md-button id="uploadButton" class="md-fab md-mini">
-                    <md-icon class="material-icons">attach_file</md-icon>
-                  </md-button>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center" flex-gt-sm="">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Allergy History</label>
+                    <textarea ng-init="patient.allergyHistory = 'No known allergy'" ng-model="patient.allergyHistory" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
+                  </md-input-container>
+
                 </div>
-              </choose-file>  
-            </md-input-container>
-          </div>
-        </form>
-      </div>
-    </md-content>
-
-
-
-    <md-content ng-show="currentNavItem == 'page6'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-        <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
-          <md-table headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs" count="count" type="'1'">
-            
-          </md-table>
-        </md-content>
-        <hr>
-        <form name="medicaionsForm" id="medicationsForm" ng-submit="addMed()" ng-if="loggedInUser.type != 'Patient'">
-          <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
-            <div layout-gt-sm="row">
-              <md-input-container class="md-block" flex-gt-sm="">
-                <label>Medication Name(Brand)</label>
-                <input ng-model="med.medication">
-              </md-input-container>
-
-              <md-input-container class="md-block" flex-gt-sm="">
-                <label>Generic name</label>
-                <input ng-model="med.generic_name">
-              </md-input-container>
-
-              <md-input-container flex-gt-sm="" flex="15">
-                <label>Form</label>
-                <md-select ng-model="med.form">
-                  <md-option value="tablet">Tablet</md-option>
-                  <md-option value="capsule">Capsule</md-option>
-                  <md-option value="injection">Injection</md-option>
-                  <md-option value="syrup">Syrup</md-option>
-                  <md-option value="drip">Drip</md-option>
-                </md-select>
-              </md-input-container>
-
-              <md-input-container class="md-block" flex-gt-sm="">
-                <label>Dosage</label>
-                <input ng-model="med.dose">
-              </md-input-container>
-
-              <md-input-container class="md-block" flex-gt-sm="">
-                <label>Route</label>
-                <input ng-model="med.route">
-              </md-input-container>
-
-              <md-input-container class="md-block" flex-gt-sm="">
-                <label>Schedule</label>
-                <input ng-model="med.schedule">
-              </md-input-container>
+              </form>
             </div>
-            <div layout-gt-sm="row" style="justify-content: flex-end;">
-              <md-button class="pull-right md-primary md-raised" type='submit'>Add</md-button>
+          </md-content>
+
+          <md-content ng-show="currentNavItem == 'Examination'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <form name="patientHistoryForm">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>General Condition</label>
+                    <textarea md-detect-hidden ng-init="patient.generalCondition = 'Obese built in sever distress due to pain. Breathless and sweating.'" ng-model="patient.generalCondition" md-maxlength="150" rows="5" ng-readonly="loggedInUser.id == 2" ></textarea>
+                  </md-input-container>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Systematic Examination</label>
+                    <textarea md-detect-hidden ng-init="patient.systematicExamination = 'CVS: Tachycardia , No Murmurs \nRS: NVBS\nCNS: NAD\nGI: NAD'" ng-model="patient.systematicExamination" md-maxlength="150" rows="5" md-select-on-focus="" ng-readonly="loggedInUser.id == 2"></textarea>
+                  </md-input-container>
+                </div>
+              </form>
             </div>
           </md-content>
           
-        </form>
-      </div>
-    </md-content>
-    
-
-    <md-content ng-show="currentNavItem == 'page7'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 consultation" >
-        <form name="consultationForm">
-          <md-content layout="row" flex="flex" ng-click="toggleSearch=false">
-            <md-table headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="2" >
-              
-            </md-table>
-          </md-content>
-        </form>
-      
-        <iframe src="http://stackoverflow.com/" name="iframe_a">
-          <p>Your browser does not support iframes.</p>
-        </iframe>
-      </div>
-    </md-content>
-
-    <md-content ng-show="currentNavItem == 'page9'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <form name="consultationForm">
-          <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
-            <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
-              <div layout="row" flex="50">Upload your video</div>
-              <choose-file layout="row" flex="50" style="align-items: center;">
-                <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
-                <md-input-container flex class="md-block">
-                  <input type="text" ng-model="biochemistry" disabled>
-                  <div class="hint">File must be smaller than 50MB, in one of the following formats: .avi, .wmv, .flv, .vid, .mp4, .mov, .mkv</div>
-                </md-input-container>
-                <div>
-                  <md-button id="uploadButton" class="md-fab md-mini">
-                    <md-icon class="material-icons">attach_file</md-icon>
-                  </md-button>
+          <md-content ng-show="currentNavItem == 'Vitals'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <form name="patientHistoryForm">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center" >
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Pulse rate (per minute)</label>
+                    <input ng-init="patient.pulseRate = 60" type="number" ng-model="patient.pulseRate" ng-readonly="loggedInUser.id == 2"></input>
+                  </md-input-container>
                 </div>
-              </choose-file>  
-            </md-input-container>
-          </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Blood Pressure (SBP/DBP in mmHg)</label>
+                    <input ng-init="patient.bp = '120/80'" type="text" ng-model="patient.bp" ng-readonly="loggedInUser.id == 2"></input>
+                  </md-input-container>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Respiratory rate (per minute)</label>
+                    <input ng-init="patient.respRate = 24" type="number" ng-model="patient.respRate" ng-readonly="loggedInUser.id == 2"></input>
+                  </md-input-container>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Temperature (&#8457;)</label>
+                    <input ng-init="patient.temperature = 97" type="number" ng-model="patient.temperature" ng-readonly="loggedInUser.id == 2"></input>
+                  </md-input-container>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>SpO2 (%)</label>
+                    <input ng-init="patient.spo2 = 98" type="number" ng-model="patient.spo2" ng-readonly="loggedInUser.id == 2"></input>
+                  </md-input-container>
+                </div>
+              </form>
+            </div>
           </md-content>
-        </form>
-      </div>
-    </md-content>
 
+          <md-content ng-show="currentNavItem == 'Advice'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <form name="patientAdviceForm">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Provisional Diagnosis</label>
+                    <textarea md-detect-hidden ng-init="patient.generalCondition='Angina with DM with Hypertension.'" ng-model="patient.generalCondition" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                  </md-input-container>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Investigations</label>
+                    <textarea md-detect-hidden ng-init="patient.investigations = 'Do CBC with lipid profile and cardiac markers, ECG, 2D Echo'" ng-model="patient.investigations" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                  </md-input-container>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="">
+                    <label>General Advice</label>
+                    <textarea md-detect-hidden ng-init="patient.generalAdvice = 'Bed rest, avoid exertion, Continue antihypertensive and anti-diabetic medications. Follow up after a week or immediately if symptoms appears again.'" ng-model="patient.generalAdvice" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                  </md-input-container>
+                </div>
+              </form>
+            </div>
+          </md-content>
+
+          <md-content ng-show="currentNavItem == 'Reports'" md-theme="docs-dark" layout-gt-sm="column" layout-padding="20">
+            <div class="patientReportsForm" flex>
+              <form name="patientReportsForm">
+                <div layout-gt-sm="row" layout-align="center" flex>
+                  <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div layout="row" flex="50">Biochemistry</div>
+                    <choose-file layout="row" flex="50" style="align-items: center;">
+                      <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
+                      <md-input-container flex class="md-block">
+                        <input type="text" ng-model="biochemistry" disabled>
+                        <div class="hint">Select your file</div>
+                      </md-input-container>
+                      <div>
+                        <md-button id="uploadButton" class="md-fab md-mini">
+                          <md-icon class="material-icons">attach_file</md-icon>
+                        </md-button>
+                      </div>
+                    </choose-file>  
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout-align="center" flex>
+                  <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div layout="row" flex="50">Pathology Reports</div>
+                    <choose-file layout="row" flex="50" style="align-items: center;">
+                      <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
+                      <md-input-container flex class="md-block">
+                        <input type="text" ng-model="pathology" disabled>
+                        <div class="hint">Select your file</div>
+                      </md-input-container>
+                      <div>
+                        <md-button id="uploadButton" class="md-fab md-mini">
+                          <md-icon class="material-icons">attach_file</md-icon>
+                        </md-button>
+                      </div>
+                    </choose-file>  
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout-align="center" flex>
+                  <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div layout="row" flex="50">Imaging (X-Ray/Echo/USG/CT/MRI etc.)</div>
+                    <choose-file layout="row" flex="50" style="align-items: center;">
+                      <input id="fileInput" type="file" class="ng-hide">
+                      <md-input-container flex class="md-block">
+                        <input type="text" ng-model="imaging" disabled>
+                        <div class="hint">Select your file</div>
+                      </md-input-container>
+                      <div>
+                        <md-button id="uploadButton" class="md-fab md-mini">
+                          <md-icon class="material-icons">attach_file</md-icon>
+                        </md-button>
+                      </div>
+                    </choose-file>  
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout-align="center" flex>
+                  <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div layout="row" flex="50">Others</div>
+                    <choose-file layout="row" flex="50" style="align-items: center;">
+                      <input id="fileInput" type="file" class="ng-hide">
+                      <md-input-container flex class="md-block">
+                        <input type="text" ng-model="others" disabled>
+                        <div class="hint">Select your file</div>
+                      </md-input-container>
+                      <div>
+                        <md-button id="uploadButton" class="md-fab md-mini">
+                          <md-icon class="material-icons">attach_file</md-icon>
+                        </md-button>
+                      </div>
+                    </choose-file>  
+                  </md-input-container>
+                </div>
+              </form>
+            </div>
+          </md-content>
+
+          <md-content ng-show="currentNavItem == 'Medications'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
+                <md-table headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs" count="count" type="'1'">
+                  
+                </md-table>
+              </md-content>
+              <hr>
+              <form name="medicaionsForm" id="medicationsForm" ng-submit="addMed()" ng-if="loggedInUser.type != 'Patient'">
+                <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
+                  <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Medication Name(Brand)</label>
+                      <input ng-model="med.medication">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Generic name</label>
+                      <input ng-model="med.generic_name">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-sm="" flex="15">
+                      <label>Form</label>
+                      <md-select ng-model="med.form">
+                        <md-option value="tablet">Tablet</md-option>
+                        <md-option value="capsule">Capsule</md-option>
+                        <md-option value="injection">Injection</md-option>
+                        <md-option value="syrup">Syrup</md-option>
+                        <md-option value="drip">Drip</md-option>
+                      </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Dosage</label>
+                      <input ng-model="med.dose">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Route</label>
+                      <input ng-model="med.route">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                      <label>Schedule</label>
+                      <input ng-model="med.schedule">
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-sm="row" style="justify-content: flex-end;">
+                    <md-button class="pull-right md-primary md-raised" type='submit'>Add</md-button>
+                  </div>
+                </md-content>
+                
+              </form>
+            </div>
+          </md-content>
+          
+          <md-content ng-show="currentNavItem == 'Online'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <form name="consultationForm">
+                <md-content layout="row" flex="flex" ng-click="toggleSearch=false">
+                  <md-table headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="2" >
+                    
+                  </md-table>
+                </md-content>
+              </form>
+            <!-- 
+              <iframe src="http://stackoverflow.com/" name="iframe_a">
+                <p>Your browser does not support iframes.</p>
+              </iframe> -->
+            </div>
+          </md-content>
+
+          <md-content ng-show="currentNavItem == 'Offline'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
+            <div flex>
+              <form name="consultationForm">
+                <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout-gt-sm="row" layout-align="center">
+                  <md-input-container class="md-block" flex-gt-sm="" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div layout="row" flex="50">Upload your video</div>
+                    <choose-file layout="row" flex="50" style="align-items: center;">
+                      <input id="fileInput" type="file" class="ng-hide" ng-readonly="loggedInUser.id == 2">
+                      <md-input-container flex class="md-block">
+                        <input type="text" ng-model="biochemistry" disabled>
+                        <div class="hint">File must be smaller than 50MB, in one of the following formats: .avi, .wmv, .flv, .vid, .mp4, .mov, .mkv</div>
+                      </md-input-container>
+                      <div>
+                        <md-button id="uploadButton" class="md-fab md-mini">
+                          <md-icon class="material-icons">attach_file</md-icon>
+                        </md-button>
+                      </div>
+                    </choose-file>  
+                  </md-input-container>
+                </div>
+                </md-content>
+              </form>
+            </div>
+          </md-content>
+        </div>
+      </md-card>
+    </md-content>
   </div>
-</md-card>
-</md-content>
 </div>
 
 
