@@ -357,11 +357,17 @@
                   </md-content>
                 </form>
                 <div flex='30' ng-hide="consultType">
-                  <span flex ng-hide="consultType" class="" style="height: 200px; width: 100%" ng-click="consultType=1"><img src="../images/online.png" alt="ONLINE"/>ONLINE</span>  
+                  <md-button flex ng-hide="consultType" style="height: 290px; width: 100%" class="" ng-click="consultType=1">
+                    <img src="../images/online.png" alt="ONLINE" height="260"/><br>
+                    ONLINE
+                  </md-button>  
                 </div>
                 <div flex='30' ng-hide="consultType">
                 
-                  <span  class="" style="height: 200px; width: 100%" ng-click="consultType=2"><img src="../images/offline.png" alt="OFFLINE"/>OFFLINE</span>
+                  <md-button  class="" style="height: 290px; width: 100%" ng-click="consultType=2">
+                    <img src="../images/offline.png" alt="OFFLINE" height="260" /><br>
+                    OFFLINE
+                  </md-button>
                 </div>
                 <div class="drSpecialists" flex ng-show="consultType && consultType==1 && !docSpl">
                   <md-button flex="25" class="md-raised md-primary" style="height: 120px; min-width: 300px;max-width: 300px;" ng-click="docSpl='Nephrology'">
