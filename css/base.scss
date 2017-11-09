@@ -355,6 +355,10 @@ md-input-container.md-docs-dark-theme md-select {
         justify-content: space-around;
       }     
 
+      div.patientDetails {
+        height: auto;
+      }
+
       img {
         height: 4em;
         width: 4em;
@@ -412,8 +416,12 @@ md-input-container.md-docs-dark-theme md-select {
       text-transform: uppercase;
 
       div.patientAttrs {
-
-        padding: 10px;
+        div {
+          padding: 10px;
+        }
+      }
+      div.patientDetails {
+        height: 72px;
       }
 
       div {
