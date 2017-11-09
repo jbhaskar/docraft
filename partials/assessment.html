@@ -360,7 +360,7 @@
                 </div>
                 <div flex='30' ng-hide="consultType">
                 
-                  <span  class="" style="height: 200px; width: 100%" ng-click="consultType=0"><img src="../images/offline.png" alt="OFFLINE"/>OFFLINE</span>
+                  <span  class="" style="height: 200px; width: 100%" ng-click="consultType=2"><img src="../images/offline.png" alt="OFFLINE"/>OFFLINE</span>
                 </div>
                 <div class="drSpecialists" flex ng-show="consultType && consultType==1 && !docSpl">
                   <md-button flex="25" class="md-raised md-primary" style="height: 120px; min-width: 300px;max-width: 300px;" ng-click="docSpl='Nephrology'">
@@ -436,7 +436,7 @@
                     Ear Nose Throat
                   </md-button>
                 </div>
-                <div class="drSpecialists" flex ng-show="consultType && consultType==0">
+                <div class="consultOffline" flex ng-show="consultType && consultType==2">
                   <div flex >
                     <form name="consultationForm">
                       <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
