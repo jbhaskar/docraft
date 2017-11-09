@@ -409,6 +409,11 @@ md-input-container.md-docs-dark-theme md-select {
     transition: all 1s ease;
     background: #f8f8f8;
 
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
+
     .sidenav-top {
       background: rgb(40,53,147);
       color: #f8f8f8;
