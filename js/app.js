@@ -1,4 +1,12 @@
 import "../css/base.scss";
+import '../images/History.jpg';
+import '../images/Medications.jpg';
+import '../images/Reports.jpg';
+import '../images/Examination.jpg';
+import '../images/Vitals.jpg';
+import '../images/Consultation.jpg';
+import '../images/Advice.jpg';
+import '../images/nouns/capsule1.svg';
 import '../images/nouns/capsule1.svg';
 import '../images/nouns/stetho.svg';
 import '../images/nouns/chems.svg';
