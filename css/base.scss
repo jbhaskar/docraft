@@ -2,22 +2,30 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow: hidden;
+}
+
+main {
+  overflow: overlay;
 }
 
 #header {
-    position: relative;
-    header: 0;
+    position: sticky;
+    top: 0;
     left: 0;
     width: 100%;
+    z-index: 999;
 }
 
 .copyright {
     background: #f8f8f8;
     
+    box-shadow:  #000 0px -10px 100px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #333;    
+    z-index: 1;
 }
 
 .header-content {
@@ -26,7 +34,8 @@ body {
     align-items: center;
     background: #f8f8f8;
     padding: 10px 40px;
-
+    box-shadow:  #000 0px -36px 100px 10px;
+    z-index: 1;
 }
 
 .header-content p {
@@ -100,22 +109,21 @@ body {
     background-size: 80%;
     justify-content: flex-end;
     background-repeat: no-repeat;
+    padding: 6%;
 }
 
 .login-container {
-    height: 100%;
+    // height: 100%;
     min-width: 300px;
     max-width: 400px;
-    margin-right: 40px;
+    // margin-right: 40px;
     // margin: 0 auto;
     border: 1px solid #fff;
     box-shadow: #ccc 0px 2px 26px 2px
-    /*padding: 20px;*/
 }
 .login-container button {
     width: 100%;
     border: 1px solid #fff;
-    /*background: #0276C0;*/
     color: #fff;
     padding: 10px; 
     box-shadow: #ccc 0px 2px 26px 2px
@@ -123,7 +131,7 @@ body {
 
 
 .login-logo img {
-    width: 80%;
+    width: 45%;
     margin: 20px 60px;
 }
 
@@ -135,11 +143,6 @@ body {
 
 
 .login-form-container {
-    background: #0276C0;
-    /*display: flex;
-    justify-content: center;
-    flex-flow: column;
-    padding: 20px;*/
     color: #fff;
 }
 
@@ -324,6 +327,7 @@ md-input-container.md-docs-dark-theme md-select {
 
 .assessment {
   background: #fff;
+  height: 100%;
 
   .card-media {
     background-color: #ccc;
@@ -335,9 +339,45 @@ md-input-container.md-docs-dark-theme md-select {
     padding: 20px 60px;
     // top: 40px;
     position: relative;
+    background: url(../images/backgrounds/Advice.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+
+    md-card.md-docs-dark-theme {
+      background: rgba(255,255,255,0.9);
+    }
   }
   .md-sidenav-left.expand {
     width: 300px;
+
+    .sidenav-top {
+      div {
+        justify-content: space-around;
+      }     
+
+      img {
+        height: 4em;
+        width: 4em;
+        border-radius: 2em;
+      }
+
+      .md-headline {
+        opacity: 1;
+        transition: 3s all ease-in;
+      }
+      
+      .md-subhead {
+        opacity: 1;
+        transition: 3s all ease-in;
+      }
+
+      div.patientAttrs {
+        flex-direction: row;
+
+        padding: 10px 0;
+      }
+    }
+
     .md-nav-bar {
       ul {
         .md-button {
@@ -351,7 +391,7 @@ md-input-container.md-docs-dark-theme md-select {
           }
 
           .tabTitle {
-            visibility: visible;
+            opacity: 1;
           }
         }
       }
@@ -359,16 +399,60 @@ md-input-container.md-docs-dark-theme md-select {
   }
 
   .md-sidenav-left {
-    top: 120px;
-    position: fixed;
-    width: 60px;
+    position: static;
+    // margin-top: 72px;
+    width: 80px;
     transition: all 1s ease;
-    background: transparent;
+    background: #f8f8f8;
+
+    .sidenav-top {
+      background: rgb(40,53,147);
+      color: #f8f8f8;
+      padding: 0 10px;
+      text-transform: uppercase;
+
+      div.patientAttrs {
+
+        padding: 10px;
+      }
+
+      div {
+        justify-content: flex-start;
+        align-items: center;
+      }     
+
+      img {
+        height: 4em;
+        width: 4em;
+        border-radius: 2em;
+        // display: inline;
+      }
+
+      .md-headline {
+        opacity: 0;
+        font-size: 1.2em;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+      
+      .md-subhead {
+        opacity: 0;
+        font-size: 1.0em;
+        font-weight: 500;
+        padding: 0;
+      }
+
+      span {
+        font-weight: 700;
+        font-size: 1em;
+        // padding: 1em;
+      }
+    }
 
     .md-nav-bar {
       height: 100%;
       max-height: 800px;
-      /*width: 30%;*/
+      border: none;
       display: flex;
       // border: 1px solid rgb(63,81,181);
 
@@ -383,13 +467,14 @@ md-input-container.md-docs-dark-theme md-select {
           padding-left: 10px;
           md-icon {
             color: rgb(63,81,181) !important;
-            height: 40px;
-            width: 40px;
+            height: 60px;
+            width: 60px;
             // transition: all 0.5s ease-in-out;
           }
 
           .tabTitle {
-            visibility: hidden;
+            opacity: 0;
+            padding-left: 10px;
             transition: all 0.6s ease;
           }
         }
@@ -431,7 +516,7 @@ md-input-container.md-docs-dark-theme md-select {
   md-content {
     width: 100%;
     padding: 20px;
-    background: #fff;
+    background: transparent;
   }
 
 }

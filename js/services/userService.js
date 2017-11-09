@@ -5,10 +5,11 @@ module.exports = function ($cookies) {
                 id: 5614,
                 title: "Mr",
                 firstName: 'Chandra Shekhar',
+                gender: "male",
                 lastName: 'Roy',
                 name: 'Chandra Shekhar Roy',
                 email: 'chandra@tmd.com',
-                profilePic: 'http://www.clipper-group.com/contacts/asia-pacific/india/mumbai/~/media/Images/Contacts/CGO.JPG?mw=698',
+                profilePic: '../images/Chandra.jpg',
                 address1: '509A 7th cross, 6thBlock, Koramangala',
                 city: 'Bangalore',
                 state: 'KA',
@@ -27,18 +28,19 @@ module.exports = function ($cookies) {
                 lastName: 'Joshi', name: "Dhruv Joshi", type: "Doc", email: 'dhruv@tmd.com', spec: 'Nephrologist', city: 'Bangalore'},
               { 
                 id: 5615,
-                title: "Mrs",
+                title: "Miss",
                 firstName: 'Sujan',
                 lastName: 'CH',
                 name: 'Sujan CH',
+                gender: 'female',
                 type: "Patient",
                 email: 'sujan@tmd.com',
                 mobile: '9916725425',
                 status: 'online',
-                profilePic: 'https://ak5.picdn.net/shutterstock/videos/4808225/thumb/1.jpg?i10c=img.resize(height:160)'
+                profilePic: '../images/Sujan.jpg'
               },
               { id: 3, title: "Dr", firstName: 'Prasanna', lastName: 'Ganapa', 
-                name: "Prasanna Ganapa", type: "Doc", email: 'prasanna@tmd.com', spec: 'Medicine', city: 'Pune'}
+                name: "Prasanna Ganapa", type: "Doc", email: 'prasanna@tmd.com', spec: 'Physician', city: 'Pune'}
             ]
         var addUser = function (user) {
             users.push(user);

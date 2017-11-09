@@ -29,7 +29,8 @@
           <md-button aria-label="Info" ng-href="#/assessment/{{c.patient_id}}"><!-- <i class="ion-android-more-vertical"></i> -->Details</md-button>
         </td>
         <td ng-if="type=='2'" class="md-table-td-more">
-          <md-button aria-label="Info" onclick="window.open('https://appear.in/telemed','Telemed Connect','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=500,height=600').focus();"><!-- <i class="ion-android-more-vertical"></i> -->Connect</md-button>
+          <md-button aria-label="Info" ng-href="https://appear.in/telemed" ng-click="connec=1" target="iframe_a">Connect</md-button>
+          <!-- window.open('https://appear.in/telemed','Telemed Connect','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=500,height=600').focus(); -->
         </td>
         </a>
       </tr>
