@@ -6,11 +6,6 @@ import '../images/Examination.jpg';
 import '../images/Vitals.jpg';
 import '../images/Consultation.jpg';
 import '../images/Advice.jpg';
-import '../images/nouns/capsule1.svg';
-import '../images/nouns/capsule1.svg';
-import '../images/nouns/stetho.svg';
-import '../images/nouns/chems.svg';
-import '../images/nouns/report.svg';
 import '../images/examination.svg';
 import '../images/History.svg';
 import '../images/online.png';
@@ -41,8 +36,6 @@ import '../images/Consultation.svg';
 import '../images/Report.svg';
 import '../images/Sujan.jpg';
 import '../images/Chandra.jpg';
-import '../images/nouns/heartReport.svg';
-import '../images/nouns/medconsult.svg';
 import '../images/top-shadow.png';
 import '../tmd.pdf';
 // import '../images/bckgrnd.jpeg';
@@ -56,6 +49,7 @@ import loginCtrl from './controllers/loginCtrl.js';
 import signupCtrl from './controllers/signupCtrl.js';
 import userService from './services/userService.js';
 import medService from './services/medService.js';
+import httpService from './services/httpService.js';
 import appConfig from './config.js';
 import ghelpers from './ghelpers.js';
 // import 'bootstrap';
@@ -82,6 +76,7 @@ app.config(appConfig)
 .controller('SignupCtrl', signupCtrl)
 .factory('UserService', userService)
 .factory('MedService', medService)
+// .factory('HttpService', httpService)
 .directive('mdTable', mdTable)
 .directive('chooseFile', chooseFile)
 .filter('startFrom',function (){

@@ -1,4 +1,4 @@
-module.exports = function ($cookies) {
+module.exports = function ($cookies, $http) {
         var users = [
               { id: 1, firstName: 'Telemed', lastName: 'Telemed', type: "Admin", name: 'Admin' },
               {
@@ -85,11 +85,18 @@ module.exports = function ($cookies) {
 
         var getPatients = function () {
           var patients = [];
-          for(var i=0; i< users.length; i++){
-            if(users[i].type === 'Patient'){
-              patients.push(users[i]);
-            }
-          }
+          $http({ method: 'GET',
+              url: 'http://0.0.0.0:2020/get-patients'
+            }).then( function (response) {
+              console.log("=======response====================");
+              console.log(response.data);
+              // debugger;
+              patients = response.data;
+
+            }, function (error) {
+              console.log("===============error============");
+              console.log(JSON.stringify(error));
+            });
           return patients;
         };
         return {

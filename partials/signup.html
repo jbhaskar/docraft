@@ -2,27 +2,26 @@
     <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center" style="width: 100%">
       <md-card md-theme="docs-dark" md-theme-watch="" layout="row" style="padding: 40px;">
       <div>
-
         <h1>Patient Registration</h1>
-        <form name="userForm" ng-submit="signup()">
+        <form name="userForm" ng-submit="signup($cookies,user)">
           <div layout-gt-sm="row">
             <md-input-container flex-gt-sm="" flex="15">
               <label>Title</label>
-              <md-select ng-model="user.title">
-                <md-option value="mr">Mr.</md-option>
-                <md-option value="mrs">Mrs.</md-option>
-                <md-option value="miss">Miss.</md-option>
+              <md-select ng-model="user.salutation">
+                <md-option value="Mr.">Mr.</md-option>
+                <md-option value="Mrs.">Mrs.</md-option>
+                <md-option value="Miss.">Miss.</md-option>
               </md-select>
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>First name</label>
-              <input ng-model="user.firstName">
+              <input ng-model="user.firstName" type="text">
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Last name</label>
-              <input ng-model="user.lastName">
+              <input ng-model="user.lastName" type="text">
             </md-input-container>
           </div>
 
@@ -30,23 +29,23 @@
             <md-input-container class="md-block" flex-gt-sm="" style="padding: 0px 0 25px 0;">
               <label>Gender</label>
               <md-select ng-model="user.gender">
-                <md-option value="male">Male</md-option>
-                <md-option value="female">Female</md-option>
-                <md-option value="other">Others</md-option>
+                <md-option value="M">Male</md-option>
+                <md-option value="F">Female</md-option>
+                <md-option value="O">Others</md-option>
               </md-select>
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm="" style="padding: 0px 0 25px 0;">
               <label>Blood Group</label>
-              <md-select ng-model="user.bloodGroup">
-                <md-option value="op">O+</md-option>
-                <md-option value="on">O-</md-option>
-                <md-option value="ap">A+</md-option>
-                <md-option value="an">A-</md-option>
-                <md-option value="bp">B+</md-option>
-                <md-option value="bn">B-</md-option>
-                <md-option value="abp">AB+</md-option>
-                <md-option value="abn">AB-</md-option>
+              <md-select ng-model="user.bloodgroup">
+                <md-option value="O+">O+</md-option>
+                <md-option value="O-">O-</md-option>
+                <md-option value="A+">A+</md-option>
+                <md-option value="A-">A-</md-option>
+                <md-option value="B+">B+</md-option>
+                <md-option value="B-">B-</md-option>
+                <md-option value="AB+">AB+</md-option>
+                <md-option value="AB-">AB-</md-option>
               </md-select>
             </md-input-container>
           </div>
@@ -70,12 +69,12 @@
 
           <md-input-container class="md-block">
             <label>Address</label>
-            <input ng-model="user.address1">
+            <input ng-model="user.address">
           </md-input-container>
 
           <md-input-container class="md-block">
             <label>Address Line 2</label>
-            <input ng-model="user.address2">
+            <input ng-model="user.addressline2">
           </md-input-container>
 
           <div layout-gt-sm="row">
@@ -95,7 +94,7 @@
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Postal Code</label>
-              <input name="postalCode" ng-model="user.postalCode" placeholder="123456" required="" ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
+              <input name="postalCode" ng-model="user.pincode" placeholder="123456" required="" ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
 
               <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
                 <div ng-message="required" class="my-message">You must supply a postal code.</div>
@@ -110,17 +109,17 @@
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Father's Name</label>
-              <input ng-model="user.fathersName">
+              <input ng-model="user.fathersname" type="text">
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm="">
               <label>Nationality</label>
-              <input ng-model="user.country">
+              <input ng-model="user.nationality">
             </md-input-container>
           </div>
           <md-input-container class="md-block">
             <label>Emergeny Contact Details</label>
-            <textarea ng-model="user.addlDetails" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            <textarea ng-model="user.emergencycontact" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
           </md-input-container>
 
           <md-button class="md-raised md-primary" type="submit" flex-gt-sm="row">Register</md-button>

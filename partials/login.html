@@ -5,17 +5,17 @@
   </div>
   <div class="login-form-container" flex>
     <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
-      <form ng-submit="login()">
+      <form ng-submit="login(userCredentials)">
         <div layout-gt-sm="row" layout-align="space-between center">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Email / Phone</label>
-            <input ng-model="email" type="text">
+            <input ng-model="userCredentials.username" type="text">
           </md-input-container>
         </div>
         <div layout-gt-sm="row" layout-align="space-between center">
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Password</label>
-            <input ng-model="password" type="password">
+            <input ng-model="userCredentials.password" type="password">
           </md-input-container>
         </div>
         <!-- <input type="email" name="username" ng-model="username" placeholder="Userame" >
