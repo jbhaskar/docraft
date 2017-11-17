@@ -349,9 +349,9 @@
             
             <md-content ng-show="currentNavItem == 'Consultation'" md-theme="docs-dark" layout-gt-sm="row" layout-padding="20" layout-align="center">
               <div layout="row" flex="flex" style="justify-content: space-around;">
-                <form name="consultationForm" ng-show="docSpl && docSpl=='Nephrology'">
+                <form name="consultationForm" ng-show="docSpl && docSpl=='Nephrology'" style="min-width: 400px;">
                   <md-content layout="row" flex="flex" ng-click="toggleSearch=false">
-                    <md-table headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="2" >
+                    <md-table style="min-width: 400px;" headers="docheaders" content="doccontent" sortable="docsortable" filters="docsearch" custom-class="doccustom" thumbs="docthumbs" count="doccount" type="2" >
                       
                     </md-table>
                   </md-content>
